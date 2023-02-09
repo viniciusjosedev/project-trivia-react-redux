@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Login extends Component {
   state = {
@@ -21,6 +22,14 @@ export default class Login extends Component {
         }
       },
     );
+  };
+
+  getToken = async () => {
+    const { history } = this.props;
+    const requisicao = await (await fetch('https://opentdb.com/api_token.php?command=request')).json();
+    // const data = await requisicao.json();
+    localStorage.setItem('token', requisicao.token);
+    history.push('/game');
   };
 
   render() {
@@ -51,6 +60,7 @@ export default class Login extends Component {
           type="button"
           data-testid="btn-play"
           disabled={ btnDisabled }
+          onClick={ this.getToken }
         >
           Play
         </button>
@@ -58,3 +68,11 @@ export default class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.objectOf(PropTypes.objectOf),
+};
+
+Login.defaultProps = {
+  history: {},
+};
