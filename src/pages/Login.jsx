@@ -34,7 +34,6 @@ export default class Login extends Component {
 
   render() {
     const { userName, email, btnDisabled } = this.state;
-    // console.log(btnDisabled);
     return (
       <>
         <label>
