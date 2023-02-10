@@ -85,10 +85,12 @@ class Login extends Component {
 
 Login.propTypes = {
   history: PropTypes.objectOf(PropTypes.objectOf),
+  dispatch: PropTypes.func,
 };
 
 Login.defaultProps = {
   history: {},
+  dispatch: () => {},
 };
 
 export default connect()(Login);
