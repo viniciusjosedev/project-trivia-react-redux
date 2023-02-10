@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import getToken from '../api/getToken';
+import { submitLogin } from '../redux/actions';
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     userName: '',
     email: '',
@@ -26,8 +28,9 @@ export default class Login extends Component {
   };
 
   getToken = async () => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
     await getToken(history);
+    dispatch(submitLogin({ ...this.state }));
   };
 
   redirectPage = () => {
@@ -87,3 +90,5 @@ Login.propTypes = {
 Login.defaultProps = {
   history: {},
 };
+
+export default connect()(Login);

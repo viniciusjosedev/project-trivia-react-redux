@@ -1,9 +1,10 @@
 import { Component } from 'react';
+import Header from '../components/Header';
 
 export default class Game extends Component {
   render() {
     return (
-      <h1>teste</h1>
+      <Header />
     );
   }
 }
