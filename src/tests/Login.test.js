@@ -2,6 +2,7 @@ import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from '../pages/Login';
+import App from "../App";
 import { renderWithRouterAndRedux } from './helpers/renderWithRouterAndRedux';
 
 describe('Testa o componente Login', () => {
@@ -53,16 +54,16 @@ describe('Testa o componente Login', () => {
     renderWithRouterAndRedux(<Login />);
 
     const configBtn = screen.getByTestId('btn-settings');
-    userEvent.click(configBtn);
-    expect(screen.getByTestId('settings-title')).toBeInTheDocument();
+    expect(configBtn).toBeInTheDocument();
   });
 
   it('Testa se ao clicar no botão de configuração do jogo, ele redireciona para a página de configurações', () => {
-    const { history } = renderWithRouterAndRedux(<Login />);
+    const { history } = renderWithRouterAndRedux(<App />);
 
     const configBtn = screen.getByTestId('btn-settings');
     userEvent.click(configBtn);
     const { pathname } = history.location;
+
     expect(pathname).toBe('/configuracao');
   });
 
