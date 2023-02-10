@@ -30,6 +30,12 @@ export default class Login extends Component {
     await getToken(history);
   };
 
+  redirectPage = () => {
+    const { history } = this.props;
+
+    history.push('/configuracao');
+  };
+
   render() {
     const { userName, email, btnDisabled } = this.state;
     return (
@@ -61,6 +67,13 @@ export default class Login extends Component {
           onClick={ this.getToken }
         >
           Play
+        </button>
+        <button
+          type="button"
+          data-testid="btn-settings"
+          onClick={ this.redirectPage }
+        >
+          Configurações
         </button>
       </>
     );
