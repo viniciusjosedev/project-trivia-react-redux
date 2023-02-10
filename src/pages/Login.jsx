@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import getToken from '../api/getToken';
 
 export default class Login extends Component {
   state = {
@@ -26,10 +27,7 @@ export default class Login extends Component {
 
   getToken = async () => {
     const { history } = this.props;
-    const requisicao = await (await fetch('https://opentdb.com/api_token.php?command=request')).json();
-    // const data = await requisicao.json();
-    localStorage.setItem('token', requisicao.token);
-    history.push('/game');
+    await getToken(history);
   };
 
   render() {

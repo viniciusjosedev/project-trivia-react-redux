@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from '../pages/Login';
 import { renderWithRouterAndRedux } from './helpers/renderWithRouterAndRedux';
@@ -76,7 +76,9 @@ describe('Testa o componente Login', () => {
     userEvent.type(nameInput, 'Sthefani');
     userEvent.type(emailInput, 'sthefani@hotmail.com');
     userEvent.click(playBtn);
+
     const { pathname } = history.location;
-    expect(pathname).toBe('/game');
+    waitFor( () => expect(pathname).toBe('/game'), { timeout: 5000 });
+		waitFor( () => expect(JSON.parse(localStorage.getItem('token')).length).toBeDefined(), { timeout: 5000 } )
   });
 });
