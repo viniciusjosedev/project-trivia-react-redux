@@ -27,8 +27,7 @@ export default class Login extends Component {
 
   getToken = async () => {
     const { history } = this.props;
-    await getToken();
-    history.push('/game');
+    await getToken(history);
   };
 
   render() {
