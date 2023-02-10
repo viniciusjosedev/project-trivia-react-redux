@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import Header from '../components/Header';
 import { getQuestions } from '../api/getToken';
 import funcOrderList from '../helper/funcOrderList';
 
@@ -53,7 +54,7 @@ export default class Game extends Component {
     const { questions, timer, lista, isDisabled } = this.state;
     return (
       <>
-        <h1>Game</h1>
+        <Header />
         {
           questions.length > 0
             && (
