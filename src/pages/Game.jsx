@@ -35,13 +35,12 @@ export default class Game extends Component {
   funcTimer = () => {
     const NUMBER_INTERVAL = 1000;
     const NUMBER_TIMEOUT = 30000;
-    const NUMBER_BTN_ABLE = 5000;
     const intervalo = setInterval(() => {
       this.setState((atual) => ({
         timer: atual.timer - 1,
+        isDisabled: false,
       }));
     }, NUMBER_INTERVAL);
-    setTimeout(() => this.setState({ isDisabled: false }), NUMBER_BTN_ABLE);
     setTimeout(() => {
       clearInterval(intervalo);
       this.setState({
