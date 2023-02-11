@@ -1,9 +1,10 @@
 import React from 'react';
-import { screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from '../pages/Login';
 import App from "../App";
 import { renderWithRouterAndRedux } from './helpers/renderWithRouterAndRedux';
+import { submitLogin } from '../redux/actions/index';
 
 describe('Testa o componente Login', () => {
   it('Testa se o componente Login possui 2 inputs e um botão', () => {
