@@ -9,13 +9,13 @@ class Header extends Component {
   };
 
   componentDidMount() {
-    const { email } = this.props;
-    this.setState({ gravatar: gravatarImg(email) });
+    const { gravatarEmail } = this.props;
+    this.setState({ gravatar: gravatarImg(gravatarEmail) });
   }
 
   render() {
     const {
-      userName,
+      name,
       score,
     } = this.props;
 
@@ -24,7 +24,7 @@ class Header extends Component {
     return (
       <div>
         <img data-testid="header-profile-picture" src={ gravatar } alt="gravatar" />
-        <p data-testid="header-player-name">{ userName }</p>
+        <p data-testid="header-player-name">{ name }</p>
         <p data-testid="header-score">{ score }</p>
       </div>
     );
@@ -38,7 +38,7 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Header);
 
 Header.propTypes = {
-  email: PropTypes.string.isRequired,
+  gravatarEmail: PropTypes.string.isRequired,
   score: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
