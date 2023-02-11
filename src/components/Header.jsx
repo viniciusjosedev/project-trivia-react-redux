@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import gravatarImg from '../api/getGravatarImg';
+import gravatarImg from '../helper/getGravatarImg';
 
 class Header extends Component {
   state = {
@@ -38,7 +38,13 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Header);
 
 Header.propTypes = {
-  email: PropTypes.string.isRequired,
-  score: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
+  email: PropTypes.string,
+  score: PropTypes.number,
+  userName: PropTypes.string,
+};
+
+Header.defaultProps = {
+  email: '',
+  score: 0,
+  userName: '',
 };
