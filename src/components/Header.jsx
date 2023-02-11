@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import gravatarImg from '../api/getGravatarImg';
+import gravatarImg from '../helper/getGravatarImg';
 
 class Header extends Component {
   state = {
