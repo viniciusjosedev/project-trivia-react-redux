@@ -1,10 +1,12 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { getQuestions } from '../api/getToken';
 import funcOrderList from '../helper/funcOrderList';
+import { attScore } from '../redux/actions/index';
 
-export default class Game extends Component {
+class Game extends Component {
   state = {
     questions: [],
     timer: 30,
@@ -50,6 +52,17 @@ export default class Game extends Component {
     }, NUMBER_TIMEOUT);
   };
 
+  funcClickResponse = (response) => {
+    const { timer, questions } = this.state;
+    const VALUE_SOME_DEFAULT = 10;
+    const GABARITO = { hard: 3, medium: 2, easy: 1 };
+    const { dispatch } = this.props;
+    if (response === 'correct-answer') {
+      dispatch(attScore(VALUE_SOME_DEFAULT
+        + (timer * GABARITO[questions[0].difficulty])));
+    }
+  };
+
   render() {
     const { questions, timer, lista, isDisabled } = this.state;
     return (
@@ -69,6 +82,7 @@ export default class Game extends Component {
                       key={ index }
                       type="button"
                       data-testid={ elemento[1] }
+                      onClick={ () => this.funcClickResponse(elemento[1]) }
                     >
                       {elemento[0]}
                     </button>
@@ -82,9 +96,12 @@ export default class Game extends Component {
   }
 }
 
+export default connect()(Game);
+
 Game.propTypes = {
   history: PropTypes.objectOf(PropTypes.objectOf),
   push: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 Game.defaultProps = {
