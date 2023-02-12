@@ -54,10 +54,12 @@ class Game extends Component {
 
   funcClickResponse = (response) => {
     const { timer, questions } = this.state;
+    const VALUE_SOME_DEFAULT = 10;
     const GABARITO = { hard: 3, medium: 2, easy: 1 };
     const { dispatch } = this.props;
     if (response === 'correct-answer') {
-      dispatch(attScore(10 + (timer * GABARITO[questions[0].difficulty])));
+      dispatch(attScore(VALUE_SOME_DEFAULT
+        + (timer * GABARITO[questions[0].difficulty])));
     }
   };
 
@@ -99,6 +101,7 @@ export default connect()(Game);
 Game.propTypes = {
   history: PropTypes.objectOf(PropTypes.objectOf),
   push: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 Game.defaultProps = {
