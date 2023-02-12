@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { getQuestions } from '../api/getToken';
 import funcOrderList from '../helper/funcOrderList';
 import OptionButton from '../components/OptionButton';
+import { attScore } from '../redux/actions/index';
 
-export default class Game extends Component {
+class Game extends Component {
   state = {
     questions: [],
     timer: 30,
@@ -51,7 +53,16 @@ export default class Game extends Component {
     }, NUMBER_TIMEOUT);
   };
 
-  applyStyleChange = () => {
+  funcClickResponse = (response) => {
+    const { timer, questions } = this.state;
+    const VALUE_SOME_DEFAULT = 10;
+    const GABARITO = { hard: 3, medium: 2, easy: 1 };
+    const { dispatch } = this.props;
+    if (response === 'correct-answer') {
+      dispatch(attScore(VALUE_SOME_DEFAULT
+        + (timer * GABARITO[questions[0].difficulty])));
+    }
+
     this.setState({
       changeButtonBorder: true,
     });
@@ -81,7 +92,7 @@ export default class Game extends Component {
                       key={ index }
                       isDisabled={ isDisabled }
                       element={ elemento }
-                      click={ this.applyStyleChange }
+                      click={ this.funcClickResponse }
                       changeStyle={ changeButtonBorder }
                     />
                   )) }
@@ -94,9 +105,12 @@ export default class Game extends Component {
   }
 }
 
+export default connect()(Game);
+
 Game.propTypes = {
   history: PropTypes.objectOf(PropTypes.objectOf),
   push: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
 Game.defaultProps = {
