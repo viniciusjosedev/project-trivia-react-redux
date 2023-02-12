@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { getQuestions } from '../api/getToken';
 import funcOrderList from '../helper/funcOrderList';
+import OptionButton from '../components/OptionButton';
 
 export default class Game extends Component {
   state = {
@@ -10,6 +11,7 @@ export default class Game extends Component {
     timer: 30,
     lista: [],
     isDisabled: true,
+    changeButtonBorder: false,
   };
 
   componentDidMount() {
@@ -49,8 +51,20 @@ export default class Game extends Component {
     }, NUMBER_TIMEOUT);
   };
 
+  applyStyleChange = () => {
+    this.setState({
+      changeButtonBorder: true,
+    });
+  };
+
   render() {
-    const { questions, timer, lista, isDisabled } = this.state;
+    const {
+      questions,
+      timer,
+      lista,
+      isDisabled,
+      changeButtonBorder,
+    } = this.state;
     return (
       <>
         <Header />
@@ -63,14 +77,13 @@ export default class Game extends Component {
                 <h1>{timer}</h1>
                 <div data-testid="answer-options">
                   { lista.map((elemento, index) => (
-                    <button
-                      disabled={ isDisabled }
+                    <OptionButton
                       key={ index }
-                      type="button"
-                      data-testid={ elemento[1] }
-                    >
-                      {elemento[0]}
-                    </button>
+                      isDisabled={ isDisabled }
+                      element={ elemento }
+                      click={ this.applyStyleChange }
+                      changeStyle={ changeButtonBorder }
+                    />
                   )) }
                 </div>
               </div>
