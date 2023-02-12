@@ -14,6 +14,8 @@ class Game extends Component {
     lista: [],
     isDisabled: true,
     changeButtonBorder: false,
+    next: false,
+    indice: 0,
   };
 
   componentDidMount() {
@@ -29,10 +31,10 @@ class Game extends Component {
     if (valor.response_code === NUMBER_FAILLED) {
       history.push('/');
     } else {
-      this.setState({
+      this.setState((state) => ({
         questions: valor.results,
-        lista: funcOrderList(valor.results[0]),
-      });
+        lista: funcOrderList(valor.results[state.indice]),
+      }));
     }
   };
 
@@ -65,7 +67,18 @@ class Game extends Component {
 
     this.setState({
       changeButtonBorder: true,
+      next: true,
     });
+  };
+
+  funcNext = () => {
+    const { indice, questions } = this.state;
+    this.setState({
+      indice: indice < questions.length - 1 ? indice + 1 : 0,
+    }, () => this.setState((state) => ({
+      lista: funcOrderList(questions[state.indice]),
+      changeButtonBorder: false,
+    })));
   };
 
   render() {
@@ -75,13 +88,14 @@ class Game extends Component {
       lista,
       isDisabled,
       changeButtonBorder,
+      next,
     } = this.state;
     return (
       <>
         <Header />
         {
           questions.length > 0
-            && (
+            ? (
               <div>
                 <h1 data-testid="question-category">{questions[0].category}</h1>
                 <h1 data-testid="question-text">{questions[0].question}</h1>
@@ -97,8 +111,22 @@ class Game extends Component {
                     />
                   )) }
                 </div>
+                {
+                  next
+                    ? (
+                      <button
+                        type="button"
+                        onClick={ this.funcNext }
+                        data-testid="btn-next"
+                      >
+                        Next
+
+                      </button>
+                    ) : null
+                }
               </div>
             )
+            : null
         }
       </>
     );
