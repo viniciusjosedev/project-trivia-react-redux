@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { getQuestions } from '../api/getToken';
 import funcOrderList from '../helper/funcOrderList';
+import OptionButton from '../components/OptionButton';
 import { attScore } from '../redux/actions/index';
 
 class Game extends Component {
@@ -12,6 +13,7 @@ class Game extends Component {
     timer: 30,
     lista: [],
     isDisabled: true,
+    changeButtonBorder: false,
   };
 
   componentDidMount() {
@@ -37,13 +39,12 @@ class Game extends Component {
   funcTimer = () => {
     const NUMBER_INTERVAL = 1000;
     const NUMBER_TIMEOUT = 30000;
-    const NUMBER_BTN_ABLE = 5000;
     const intervalo = setInterval(() => {
       this.setState((atual) => ({
         timer: atual.timer - 1,
+        isDisabled: false,
       }));
     }, NUMBER_INTERVAL);
-    setTimeout(() => this.setState({ isDisabled: false }), NUMBER_BTN_ABLE);
     setTimeout(() => {
       clearInterval(intervalo);
       this.setState({
@@ -61,10 +62,20 @@ class Game extends Component {
       dispatch(attScore(VALUE_SOME_DEFAULT
         + (timer * GABARITO[questions[0].difficulty])));
     }
+
+    this.setState({
+      changeButtonBorder: true,
+    });
   };
 
   render() {
-    const { questions, timer, lista, isDisabled } = this.state;
+    const {
+      questions,
+      timer,
+      lista,
+      isDisabled,
+      changeButtonBorder,
+    } = this.state;
     return (
       <>
         <Header />
@@ -77,15 +88,13 @@ class Game extends Component {
                 <h1>{timer}</h1>
                 <div data-testid="answer-options">
                   { lista.map((elemento, index) => (
-                    <button
-                      disabled={ isDisabled }
+                    <OptionButton
                       key={ index }
-                      type="button"
-                      data-testid={ elemento[1] }
-                      onClick={ () => this.funcClickResponse(elemento[1]) }
-                    >
-                      {elemento[0]}
-                    </button>
+                      isDisabled={ isDisabled }
+                      element={ elemento }
+                      click={ this.funcClickResponse }
+                      changeStyle={ changeButtonBorder }
+                    />
                   )) }
                 </div>
               </div>
