@@ -20,7 +20,8 @@ export default class OptionButton extends Component {
 
     return (
       <button
-        onClick={ click }
+        type="button"
+        onClick={ () => click(element[1]) }
         data-testid={ element[1] }
         disabled={ isDisabled }
         className={ this.applyStyle() }
