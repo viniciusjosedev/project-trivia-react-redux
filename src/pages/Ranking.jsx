@@ -23,6 +23,7 @@ class GoHome extends Component {
 
     return (
       <>
+        <h1 data-testid="ranking-title">Ranking</h1>
         <h1 data-testid="settings-title">Configurações</h1>
         <button
           type="button"
