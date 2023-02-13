@@ -54,19 +54,33 @@ class Game extends Component {
       });
     }, NUMBER_TIMEOUT);
     if (reset) {
-      clearInterval(interval);
+      clearTimeout(interval);
       clearTimeout(timeout);
     }
   };
 
+  // funcClickResponse = (response) => {
+  //   const { timer, questions } = this.state;
+  //   const VALUE_SOME_DEFAULT = 10;
+  //   const GABARITO = { hard: 3, medium: 2, easy: 1 };
+  //   const { dispatch } = this.props;
+  //   if (response === 'correct-answer') {
+  //     dispatch(attScore(VALUE_SOME_DEFAULT
+  //       + (timer * GABARITO[questions[0].difficulty])));
+  //   }
+
   funcClickResponse = (response) => {
     const { timer, questions } = this.state;
+    let { assertions } = this.props;
     const VALUE_SOME_DEFAULT = 10;
     const GABARITO = { hard: 3, medium: 2, easy: 1 };
     const { dispatch } = this.props;
     if (response === 'correct-answer') {
-      dispatch(attScore(VALUE_SOME_DEFAULT
-        + (timer * GABARITO[questions[0].difficulty])));
+      const score = VALUE_SOME_DEFAULT + (timer * GABARITO[questions[0].difficulty]);
+      assertions += 1;
+      const infoScore = ({ score, assertions });
+      dispatch(attScore(infoScore));
+      // dispatch(attScore(score));
     }
 
     this.setState({
@@ -155,13 +169,18 @@ class Game extends Component {
   }
 }
 
-export default connect()(Game);
+const mapStateToProps = (state) => ({
+  assertions: state.player.assertions,
+});
+
+export default connect(mapStateToProps)(Game);
 
 Game.propTypes = {
-  history: PropTypes.objectOf(PropTypes.objectOf),
-  push: PropTypes.func,
+  assertions: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
-};
+  history: PropTypes.objectOf(PropTypes.objectOf()),
+  push: PropTypes.func,
+}.isRequired;
 
 Game.defaultProps = {
   history: {},
