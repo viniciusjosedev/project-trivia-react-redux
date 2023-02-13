@@ -39,6 +39,6 @@ export default connect(mapStateToProps)(Header);
 
 Header.propTypes = {
   gravatarEmail: PropTypes.string.isRequired,
-  score: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
 };
