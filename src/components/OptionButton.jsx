@@ -17,7 +17,6 @@ export default class OptionButton extends Component {
 
   render() {
     const { isDisabled, element, click } = this.props;
-
     return (
       <button
         type="button"
