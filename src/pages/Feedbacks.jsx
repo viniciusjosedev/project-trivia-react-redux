@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 
 class Feedbacks extends Component {
+  funcButton = () => {
+    const { history } = this.props;
+    history.push('/ranking');
+  };
+
   render() {
     const GOOD_RESULT = 'Well Done!';
     const BAD_RESULT = 'Could be better...';
@@ -19,6 +24,8 @@ class Feedbacks extends Component {
             assertions < MIN_ASSERTIONS ? BAD_RESULT : GOOD_RESULT
           }
         </h1>
+        <h1 data-testid="feedback-text">Feedbacks</h1>
+        <button onClick={ this.funcButton } data-testid="btn-ranking">Ranking</button>
       </>
     );
   }
@@ -26,7 +33,14 @@ class Feedbacks extends Component {
 
 Feedbacks.propTypes = {
   assertions: PropTypes.number,
+  history: PropTypes.objectOf(PropTypes.objectOf),
+  push: PropTypes.func,
 }.isRequired;
+
+Feedbacks.defaultProps = {
+  history: {},
+  push: () => {},
+};
 
 const mapStateToProps = (state) => ({
   score: state.player.score,
