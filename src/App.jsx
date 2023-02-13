@@ -5,10 +5,16 @@ import './App.css';
 import Login from './pages/Login';
 import Configuration from './pages/Configuration';
 import Feedbacks from './pages/Feedbacks';
+import Ranking from './pages/Ranking';
 
 export default function App() {
   return (
     <Switch>
+      <Route
+        exact
+        path="/ranking"
+        render={ (props) => <Ranking { ...props } /> }
+      />
       <Route
         exact
         path="/feedbacks"
