@@ -13,7 +13,11 @@ const player = (state = INITIAL_STATE, actions) => {
       ...actions.payload,
     };
   case 'ATT_SCORE':
-    return ({ ...state, score: state.score + actions.payload });
+    return ({
+      ...state,
+      score: state.score + actions.payload.score,
+      assertions: actions.payload.assertions,
+    });
   case 'CLEAR_STORE':
     return {
       ...INITIAL_STATE,
