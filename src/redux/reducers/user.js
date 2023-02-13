@@ -14,6 +14,10 @@ const player = (state = INITIAL_STATE, actions) => {
     };
   case 'ATT_SCORE':
     return ({ ...state, score: state.score + actions.payload });
+  case 'CLEAR_STORE':
+    return {
+      ...INITIAL_STATE,
+    };
   default:
     return state;
   }
