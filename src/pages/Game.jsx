@@ -38,21 +38,25 @@ class Game extends Component {
     }
   };
 
-  funcTimer = () => {
+  funcTimer = (reset) => {
     const NUMBER_INTERVAL = 1000;
     const NUMBER_TIMEOUT = 30000;
-    const intervalo = setInterval(() => {
+    const interval = setInterval(() => {
       this.setState((atual) => ({
         timer: atual.timer - 1,
         isDisabled: false,
       }));
     }, NUMBER_INTERVAL);
-    setTimeout(() => {
-      clearInterval(intervalo);
+    const timeout = setTimeout(() => {
+      clearInterval(interval);
       this.setState({
         isDisabled: true,
       });
     }, NUMBER_TIMEOUT);
+    if (reset) {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    }
   };
 
   funcClickResponse = (response) => {
@@ -73,12 +77,21 @@ class Game extends Component {
 
   funcNext = () => {
     const { indice, questions } = this.state;
+    const { history } = this.props;
     this.setState({
-      indice: indice < questions.length - 1 ? indice + 1 : 0,
-    }, () => this.setState((state) => ({
-      lista: funcOrderList(questions[state.indice]),
-      changeButtonBorder: false,
-    })));
+      indice: indice < questions.length - 1 ? indice + 1 : '/feedbacks',
+    }, () => {
+      const { state } = this;
+      if (typeof state.indice === 'number') {
+        this.setState((states) => ({
+          lista: funcOrderList(questions[states.indice]),
+          changeButtonBorder: false,
+        }));
+        this.setState({
+          timer: 30,
+        }, () => this.funcTimer(true));
+      } else history.push('/feedbacks');
+    });
   };
 
   render() {
@@ -89,6 +102,7 @@ class Game extends Component {
       isDisabled,
       changeButtonBorder,
       next,
+      indice,
     } = this.state;
     return (
       <>
@@ -97,8 +111,16 @@ class Game extends Component {
           questions.length > 0
             ? (
               <div>
-                <h1 data-testid="question-category">{questions[0].category}</h1>
-                <h1 data-testid="question-text">{questions[0].question}</h1>
+                <h1 data-testid="question-category">
+                  {typeof indice === 'number'
+                    ? questions[indice].category : null}
+
+                </h1>
+                <h1 data-testid="question-text">
+                  {typeof indice === 'number'
+                    ? questions[indice].question : null}
+
+                </h1>
                 <h1>{timer}</h1>
                 <div data-testid="answer-options">
                   { lista.map((elemento, index) => (
