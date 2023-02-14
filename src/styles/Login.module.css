@@ -1,0 +1,130 @@
+* {
+  background-color: transparent;
+  margin: 0 none;
+}
+
+body {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.main {
+  align-items: center;
+  background: url('./images/background.svg');
+
+  /* background-color: red; */
+  background-size: cover;
+  display: flex;
+  flex-basis: 0;
+  flex-direction: column;
+  flex-grow: 4;
+  height: 720px;
+  justify-content: flex-start;
+  margin: 0 none;
+  width: 100%;
+
+  /* margin-bottom: 20px; */
+
+}
+
+.logoTrivia {
+  background: transparent;
+  flex-grow: 1;
+  height: 259.07px;
+  margin-bottom: 11.97px;
+  margin-top: 44.97px;
+  width: 230px;
+}
+
+.divBranca {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 4;
+  height: 333px;
+  justify-content: center;
+  margin-bottom: 40px;
+  width: 614px;
+
+}
+
+.inputName, .inputEmail {
+  background: transparent;
+  border: 1px solid #e1e5eb;
+  border-radius: 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  gap: 10px;
+  height: 45px;
+  line-height: 150%;
+  margin-bottom: 20px;
+  padding-left: 16px;
+  width: 519px;
+}
+
+.inputName::placeholder, .inputEmail::placeholder {
+  color: #6b7588;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  height: 21px;
+  line-height: 150%;
+  width: 232px;
+}
+
+.btnPlay {
+  background: #2fc18c;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  height: 45px;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin-bottom: 16px;
+  transition-delay: 100ms;
+  transition-duration: 500ms;
+  width: 519px;
+}
+
+.btnSettings {
+  align-items: center;
+  background: #35916f;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  height: 45px;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  transition-delay: 100ms;
+  transition-duration: 500ms;
+  width: 519px;
+}
+
+.logoSettings {
+  margin-right: 13px;
+}
+
+.btnPlay:hover, .btnSettings:hover {
+  cursor: pointer;
+  height: 45.87px;
+  width: 529px;
+}
