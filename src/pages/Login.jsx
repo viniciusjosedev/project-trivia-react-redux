@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import getToken from '../api/getToken';
 import { submitLogin } from '../redux/actions';
+import gravatarImg from '../helper/getGravatarImg';
 
 class Login extends Component {
   state = {
@@ -30,6 +31,18 @@ class Login extends Component {
   getToken = async () => {
     const { history, dispatch } = this.props;
     const { email, userName } = this.state;
+    if (JSON.parse(localStorage.getItem('ranking')) !== null) {
+      localStorage.setItem(
+        'ranking',
+        JSON.stringify([...JSON.parse(localStorage.getItem('ranking')),
+          { name: userName, score: 0, picture: gravatarImg(email) }]),
+      );
+    } else {
+      localStorage.setItem(
+        'ranking',
+        JSON.stringify([{ name: userName, score: 0, picture: gravatarImg(email) }]),
+      );
+    }
     dispatch(submitLogin({ gravatarEmail: email, name: userName }));
     await getToken(history);
   };
