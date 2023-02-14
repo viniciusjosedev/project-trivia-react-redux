@@ -59,16 +59,6 @@ class Game extends Component {
     }
   };
 
-  // funcClickResponse = (response) => {
-  //   const { timer, questions } = this.state;
-  //   const VALUE_SOME_DEFAULT = 10;
-  //   const GABARITO = { hard: 3, medium: 2, easy: 1 };
-  //   const { dispatch } = this.props;
-  //   if (response === 'correct-answer') {
-  //     dispatch(attScore(VALUE_SOME_DEFAULT
-  //       + (timer * GABARITO[questions[0].difficulty])));
-  //   }
-
   funcClickResponse = (response) => {
     const { timer, questions } = this.state;
     let { assertions } = this.props;
@@ -104,7 +94,14 @@ class Game extends Component {
         this.setState({
           timer: 30,
         }, () => this.funcTimer(true));
-      } else history.push('/feedbacks');
+      } else {
+        const { score } = this.props;
+        const ranking = JSON.parse(localStorage.getItem('ranking'));
+        ranking[ranking.length - 1].score = score;
+        const rankingOrder = ranking.sort((a, b) => b.score - a.score);
+        localStorage.setItem('ranking', JSON.stringify(rankingOrder));
+        history.push('/feedbacks');
+      }
     });
   };
 
@@ -156,7 +153,6 @@ class Game extends Component {
                         data-testid="btn-next"
                       >
                         Next
-
                       </button>
                     ) : null
                 }
@@ -171,6 +167,7 @@ class Game extends Component {
 
 const mapStateToProps = (state) => ({
   assertions: state.player.assertions,
+  score: state.player.score,
 });
 
 export default connect(mapStateToProps)(Game);
@@ -180,6 +177,7 @@ Game.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.objectOf(PropTypes.objectOf()),
   push: PropTypes.func,
+  score: PropTypes.number,
 }.isRequired;
 
 Game.defaultProps = {

@@ -6,7 +6,8 @@ import { clearStore } from '../redux/actions';
 
 class Feedbacks extends Component {
   funcButton = () => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    dispatch(clearStore());
     history.push('/ranking');
   };
 

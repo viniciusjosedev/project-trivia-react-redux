@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import GoHome from './Ranking';
+// import Ranking from './Ranking';
 
 class Configuration extends Component {
   render() {
     return (
       <>
-        <GoHome />
+        {/* <Ranking /> */}
         <h1 data-testid="settings-title">Configurações</h1>
       </>
     );
