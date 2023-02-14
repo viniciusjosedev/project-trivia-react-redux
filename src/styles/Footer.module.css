@@ -1,0 +1,27 @@
+.logoTrybe {
+
+  /* flex-grow: 1; */
+  height: 40.26px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  width: 37px;
+}
+
+.footer {
+  align-items: center;
+  background: transparent;
+  background-color: #020103;
+  color: white;
+  display: flex;
+  flex-basis: 0;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 200px;
+  justify-content: space-around;
+  width: 100%;
+}
+
+/* integrantes na esquerda */
+.titleFooter {
+  font-size: 14px;
+}
