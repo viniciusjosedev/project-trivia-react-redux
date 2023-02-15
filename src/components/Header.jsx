@@ -41,11 +41,7 @@ class Header extends Component {
             className={ style.imgStarScore }
           />
           <p className={ style.score } data-testid="header-score">
-            Pontos:
-            {' '}
-            <b>
-              { score }
-            </b>
+            { score }
           </p>
         </div>
       </header>
