@@ -40,6 +40,7 @@ class Header extends Component {
             alt="Estrela dos pontos"
             className={ style.imgStarScore }
           />
+          <p className={ style.scoreComplet }>Pontos:</p>
           <p className={ style.score } data-testid="header-score">
             { score }
           </p>

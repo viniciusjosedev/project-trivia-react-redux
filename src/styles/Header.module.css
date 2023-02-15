@@ -49,13 +49,24 @@
   width: 29.88px;
 }
 
-.score {
+.scoreComplet {
   color: black;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0.12em;
   line-height: 150%;
+  margin-right: 3px;
+}
+
+.score {
+  color: black;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 150%;
   margin-right: 100px;
+
 }
 
