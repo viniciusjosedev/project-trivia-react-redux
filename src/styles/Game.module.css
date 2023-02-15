@@ -89,6 +89,7 @@
   font-weight: 400;
   height: 138px;
   line-height: 150%;
+  margin-bottom: 45px;
   margin-top: 21px;
   text-align: center;
   width: 413px;
@@ -113,7 +114,6 @@
   text-align: center;
   width: 413px;
 
-  /* margin-bottom: -100px; */
 }
 
 .iconTimer {
@@ -138,6 +138,7 @@
   border-radius: 100px;
   box-sizing: border-box;
   color: black;
+  cursor: pointer;
   display: flex;
   font-size: 16px;
   font-style: normal;
@@ -147,19 +148,24 @@
   letter-spacing: 0.12em;
   line-height: 150%;
   margin-bottom: 20px;
+  transition-delay: 0.2s;
+  transition-duration: 200ms;
   width: 519px;
 }
 
 .buttonResposta:hover {
-  cursor: pointer;
+  height: 66.1px;
+  width: 536px;
 }
 
 .elipseImage {
+  height: 46px;
 
   /* margin-left: 10px; */
   margin-right: 21px;
   transition-delay: 100ms;
   transition-duration: 500ms;
+  width: 46px;
 }
 
 .redBorder {
@@ -201,7 +207,14 @@
   margin-right: 100px;
   margin-top: 18px;
   text-align: center;
+  transition-delay: 0.2s;
+  transition-duration: 100ms;
 
   /* position: absolute; */
   width: 519px;
+}
+
+.buttonNext:hover {
+  height: 46.48px;
+  width: 536px;
 }

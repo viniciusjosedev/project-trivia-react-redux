@@ -1,6 +1,6 @@
 * {
   background-color: transparent;
-  margin: 0 none;
+  margin: 0;
 }
 
 body {
@@ -12,8 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-
-  /* width: 100%; */
+  width: 100%;
 }
 
 .main {

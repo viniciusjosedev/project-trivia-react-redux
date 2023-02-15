@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { getQuestions } from '../api/getToken';
 import funcOrderList from '../helper/funcOrderList';
-// import OptionButton from '../components/OptionButton';
 import { attScore } from '../redux/actions/index';
 import style from '../styles/Game.module.css';
 import logoTrivia from '../styles/images/logoTrivia.svg';
@@ -14,6 +13,10 @@ import elipseB from '../styles/images/EllipseB.svg';
 import elipseC from '../styles/images/EllipseC.svg';
 import elipseD from '../styles/images/EllipseD.svg';
 import Footer from '../components/Footer';
+import iconV from '../styles/images/iconV.svg';
+import iconX from '../styles/images/iconX.svg';
+
+const CORRECT_ANSWER = 'correct-answer';
 
 class Game extends Component {
   state = {
@@ -67,28 +70,17 @@ class Game extends Component {
     }
   };
 
-  // funcClickResponse = (response) => {
-  //   const { timer, questions } = this.state;
-  //   const VALUE_SOME_DEFAULT = 10;
-  //   const GABARITO = { hard: 3, medium: 2, easy: 1 };
-  //   const { dispatch } = this.props;
-  //   if (response === 'correct-answer') {
-  //     dispatch(attScore(VALUE_SOME_DEFAULT
-  //       + (timer * GABARITO[questions[0].difficulty])));
-  //   }
-
   funcClickResponse = (response) => {
     const { timer, questions } = this.state;
     let { assertions } = this.props;
     const VALUE_SOME_DEFAULT = 10;
     const GABARITO = { hard: 3, medium: 2, easy: 1 };
     const { dispatch } = this.props;
-    if (response === 'correct-answer') {
+    if (response === CORRECT_ANSWER) {
       const score = VALUE_SOME_DEFAULT + (timer * GABARITO[questions[0].difficulty]);
       assertions += 1;
       const infoScore = ({ score, assertions });
       dispatch(attScore(infoScore));
-      // dispatch(attScore(score));
     }
 
     this.setState({
@@ -112,12 +104,19 @@ class Game extends Component {
         this.setState({
           timer: 30,
         }, () => this.funcTimer(true));
-      } else history.push('/feedbacks');
+      } else {
+        const { score } = this.props;
+        const ranking = JSON.parse(localStorage.getItem('ranking'));
+        ranking[ranking.length - 1].score = score;
+        const rankingOrder = ranking.sort((a, b) => b.score - a.score);
+        localStorage.setItem('ranking', JSON.stringify(rankingOrder));
+        history.push('/feedbacks');
+      }
     });
   };
 
   applyStyle = (changeStyle, element) => {
-    if (changeStyle && element[1] === 'correct-answer') {
+    if (changeStyle && element[1] === CORRECT_ANSWER) {
       return style.greenBorder;
     }
 
@@ -137,6 +136,7 @@ class Game extends Component {
       changeButtonBorder,
     } = this.state;
     const ELIPSES = [elipseA, elipseB, elipseC, elipseD];
+    const DONES_FAILLS = [iconV, iconX];
     return (
       <>
         <Header />
@@ -174,14 +174,6 @@ class Game extends Component {
                   </div>
                   <div className={ style.divRespostas } data-testid="answer-options">
                     { lista.map((elemento, index) => (
-                      // <OptionButton
-                      //   key={ index }
-                      //   isDisabled={ isDisabled }
-                      //   element={ elemento }
-                      //   click={ this.funcClickResponse }
-                      //   changeStyle={ changeButtonBorder }
-                      // />
-
                       <button
                         key={ index }
                         type="button"
@@ -191,12 +183,20 @@ class Game extends Component {
                         className={ `${this.applyStyle(changeButtonBorder, elemento)} 
                           ${style.buttonResposta}` }
                       >
-                        <img
-                          className={ style.elipseImage }
-                          src={ ELIPSES[index] }
-                          alt=""
-                        />
-                        {' '}
+                        {changeButtonBorder ? (
+                          <img
+                            className={ style.elipseImage }
+                            src={ elemento[1] === CORRECT_ANSWER
+                              ? DONES_FAILLS[0] : DONES_FAILLS[1] }
+                            alt=""
+                          />
+                        ) : (
+                          <img
+                            className={ style.elipseImage }
+                            src={ ELIPSES[index] }
+                            alt=""
+                          />
+                        )}
                         { elemento[0] }
                       </button>
                     ))}
@@ -223,6 +223,7 @@ class Game extends Component {
 
 const mapStateToProps = (state) => ({
   assertions: state.player.assertions,
+  score: state.player.score,
 });
 
 export default connect(mapStateToProps)(Game);
@@ -232,6 +233,7 @@ Game.propTypes = {
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.objectOf(PropTypes.objectOf()),
   push: PropTypes.func,
+  score: PropTypes.number,
 }.isRequired;
 
 Game.defaultProps = {
