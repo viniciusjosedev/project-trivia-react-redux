@@ -1,1 +1,220 @@
 /* Game.module.css */
+.logoTrivia {
+  display: flex;
+  flex-grow: 1;
+
+  /* background-color: red; */
+  height: 222px;
+  left: 221px;
+  margin-top: 16px;
+  position: absolute;
+  width: 197.09px;
+
+}
+
+.main {
+  align-items: center;
+  background: url('./images/backgroundGame.svg');
+
+  /* background-color: red; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+  display: flex;
+
+  /* flex-basis: 2; */
+  flex-grow: 4;
+
+  /* background-color: red; */
+  height: 643px;
+  justify-content: center;
+
+  /* margin-bottom: 200px; */
+  margin-top: 58px;
+
+  /* position: static; */
+
+  /* position: absolute; */
+  width: 100%;
+}
+
+.divPergunta {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: 286px;
+  justify-content: flex-start;
+
+  /* margin-bottom: 200px; */
+  margin-left: -60	px;
+  margin-top: 230px;
+  position: 5;
+  width: 439px;
+  z-index: 10;
+
+  /* box-sizing: border-box; */
+}
+
+.h1Category {
+  align-items: center;
+  background: #f9ba18;
+
+  /* background-color: red; */
+  border-radius: 100px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  height: 58px;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin-top: -30px;
+  text-align: center;
+  width: 413px;
+}
+
+.h1Question {
+  align-items: center;
+  display: flex;
+
+  /* background-color: red; */
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  height: 138px;
+  line-height: 150%;
+  margin-bottom: 45px;
+  margin-top: 21px;
+  text-align: center;
+  width: 413px;
+
+  /* box-sizing:content-box; */
+
+}
+
+.h1Timer {
+  align-items: center;
+
+  /* background-color: red; */
+  color: #ea5d5d;
+  display: flex;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  height: 38px;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  text-align: center;
+  width: 413px;
+
+}
+
+.iconTimer {
+  margin-right: 10px;
+}
+
+.divRespostas {
+  align-items: center;
+
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 121px;
+  margin-top: 75px;
+}
+
+.buttonResposta {
+  align-items: center;
+  background: white;
+  border: 1px solid white;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 64px;
+  justify-content: flex-start;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin-bottom: 20px;
+  transition-delay: 0.2s;
+  transition-duration: 200ms;
+  width: 519px;
+}
+
+.buttonResposta:hover {
+  height: 66.1px;
+  width: 536px;
+}
+
+.elipseImage {
+  height: 46px;
+
+  /* margin-left: 10px; */
+  margin-right: 21px;
+  transition-delay: 100ms;
+  transition-duration: 500ms;
+  width: 46px;
+}
+
+.redBorder {
+  border: 3px solid red;
+}
+
+.greenBorder {
+  border: 3px solid rgb(6, 240, 15);
+}
+
+.divFooter {
+  background-color: rgba(60, 27, 122, 1);
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  margin-top: -45px;
+
+  /* position: absolute; */
+  width: 100%;
+  z-index: 9;
+}
+
+.buttonNext {
+  align-items: center;
+  background: #2fc18c;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  height: 45px;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin-bottom: 166px;
+  margin-right: 100px;
+  margin-top: 18px;
+  text-align: center;
+  transition-delay: 0.2s;
+  transition-duration: 100ms;
+
+  /* position: absolute; */
+  width: 519px;
+}
+
+.buttonNext:hover {
+  height: 46.48px;
+  width: 536px;
+}

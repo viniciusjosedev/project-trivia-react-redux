@@ -4,8 +4,19 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { getQuestions } from '../api/getToken';
 import funcOrderList from '../helper/funcOrderList';
-import OptionButton from '../components/OptionButton';
 import { attScore } from '../redux/actions/index';
+import style from '../styles/Game.module.css';
+import logoTrivia from '../styles/images/logoTrivia.svg';
+import iconTimer from '../styles/images/iconTimer.svg';
+import elipseA from '../styles/images/EllipseA.svg';
+import elipseB from '../styles/images/EllipseB.svg';
+import elipseC from '../styles/images/EllipseC.svg';
+import elipseD from '../styles/images/EllipseD.svg';
+import Footer from '../components/Footer';
+import iconV from '../styles/images/iconV.svg';
+import iconX from '../styles/images/iconX.svg';
+
+const CORRECT_ANSWER = 'correct-answer';
 
 class Game extends Component {
   state = {
@@ -65,12 +76,11 @@ class Game extends Component {
     const VALUE_SOME_DEFAULT = 10;
     const GABARITO = { hard: 3, medium: 2, easy: 1 };
     const { dispatch } = this.props;
-    if (response === 'correct-answer') {
+    if (response === CORRECT_ANSWER) {
       const score = VALUE_SOME_DEFAULT + (timer * GABARITO[questions[0].difficulty]);
       assertions += 1;
       const infoScore = ({ score, assertions });
       dispatch(attScore(infoScore));
-      // dispatch(attScore(score));
     }
 
     this.setState({
@@ -105,61 +115,107 @@ class Game extends Component {
     });
   };
 
+  applyStyle = (changeStyle, element) => {
+    if (changeStyle && element[1] === CORRECT_ANSWER) {
+      return style.greenBorder;
+    }
+
+    if (changeStyle) {
+      return style.redBorder;
+    }
+  };
+
   render() {
     const {
       questions,
       timer,
       lista,
       isDisabled,
-      changeButtonBorder,
       next,
       indice,
+      changeButtonBorder,
     } = this.state;
+    const ELIPSES = [elipseA, elipseB, elipseC, elipseD];
+    const DONES_FAILLS = [iconV, iconX];
     return (
       <>
         <Header />
-        {
-          questions.length > 0
-            ? (
-              <div>
-                <h1 data-testid="question-category">
-                  {typeof indice === 'number'
-                    ? questions[indice].category : null}
-
-                </h1>
-                <h1 data-testid="question-text">
-                  {typeof indice === 'number'
-                    ? questions[indice].question : null}
-
-                </h1>
-                <h1>{timer}</h1>
-                <div data-testid="answer-options">
-                  { lista.map((elemento, index) => (
-                    <OptionButton
-                      key={ index }
-                      isDisabled={ isDisabled }
-                      element={ elemento }
-                      click={ this.funcClickResponse }
-                      changeStyle={ changeButtonBorder }
-                    />
-                  )) }
-                </div>
-                {
-                  next
-                    ? (
+        <img
+          className={ style.logoTrivia }
+          src={ logoTrivia }
+          alt="Logo Trivia"
+        />
+        <main className={ style.main }>
+          {
+            questions.length > 0
+              ? (
+                <>
+                  <div className={ style.divPergunta }>
+                    <h1 className={ style.h1Category } data-testid="question-category">
+                      {typeof indice === 'number'
+                        ? questions[indice].category : null}
+                    </h1>
+                    <h1 className={ style.h1Question } data-testid="question-text">
+                      {typeof indice === 'number'
+                        ? questions[indice].question : null}
+                    </h1>
+                    <h1 className={ style.h1Timer }>
+                      <img
+                        className={ style.iconTimer }
+                        src={ iconTimer }
+                        alt="Icone do Timer"
+                      />
+                      {' '}
+                      Tempo:
+                      {' '}
+                      {timer}
+                      s
+                    </h1>
+                  </div>
+                  <div className={ style.divRespostas } data-testid="answer-options">
+                    { lista.map((elemento, index) => (
                       <button
+                        key={ index }
                         type="button"
-                        onClick={ this.funcNext }
-                        data-testid="btn-next"
+                        onClick={ () => this.funcClickResponse(elemento[1]) }
+                        data-testid={ elemento[1] }
+                        disabled={ isDisabled }
+                        className={ `${this.applyStyle(changeButtonBorder, elemento)} 
+                          ${style.buttonResposta}` }
                       >
-                        Next
+                        {changeButtonBorder ? (
+                          <img
+                            className={ style.elipseImage }
+                            src={ elemento[1] === CORRECT_ANSWER
+                              ? DONES_FAILLS[0] : DONES_FAILLS[1] }
+                            alt=""
+                          />
+                        ) : (
+                          <img
+                            className={ style.elipseImage }
+                            src={ ELIPSES[index] }
+                            alt=""
+                          />
+                        )}
+                        { elemento[0] }
                       </button>
-                    ) : null
-                }
-              </div>
-            )
-            : null
-        }
+                    ))}
+                  </div>
+                </>)
+              : null
+          }
+        </main>
+        <div className={ style.divFooter }>
+          <button
+            type="button"
+            className={ style.buttonNext }
+            onClick={ this.funcNext }
+            data-testid={ next ? 'btn-next' : null }
+          >
+            PRÓXIMA
+          </button>
+        </div>
+        <Footer />
       </>
     );
   }

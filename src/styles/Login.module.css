@@ -1,10 +1,13 @@
 * {
   background-color: transparent;
-  margin: 0 none;
+  margin: 0;
 }
 
 body {
-  align-items: center;
+
+  /* box-sizing:content-box; */
+
+  /* align-items: center; */
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -14,7 +17,7 @@ body {
 
 .main {
   align-items: center;
-  background: url('./images/background.svg');
+  background: url('./images/backgroundLogin.svg');
 
   /* background-color: red; */
   background-size: cover;
