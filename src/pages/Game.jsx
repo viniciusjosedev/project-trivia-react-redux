@@ -4,8 +4,16 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { getQuestions } from '../api/getToken';
 import funcOrderList from '../helper/funcOrderList';
-import OptionButton from '../components/OptionButton';
+// import OptionButton from '../components/OptionButton';
 import { attScore } from '../redux/actions/index';
+import style from '../styles/Game.module.css';
+import logoTrivia from '../styles/images/logoTrivia.svg';
+import iconTimer from '../styles/images/iconTimer.svg';
+import elipseA from '../styles/images/EllipseA.svg';
+import elipseB from '../styles/images/EllipseB.svg';
+import elipseC from '../styles/images/EllipseC.svg';
+import elipseD from '../styles/images/EllipseD.svg';
+import Footer from '../components/Footer';
 
 class Game extends Component {
   state = {
@@ -108,62 +116,106 @@ class Game extends Component {
     });
   };
 
+  applyStyle = (changeStyle, element) => {
+    if (changeStyle && element[1] === 'correct-answer') {
+      return style.greenBorder;
+    }
+
+    if (changeStyle) {
+      return style.redBorder;
+    }
+  };
+
   render() {
     const {
       questions,
       timer,
       lista,
       isDisabled,
-      changeButtonBorder,
       next,
       indice,
+      changeButtonBorder,
     } = this.state;
+    const ELIPSES = [elipseA, elipseB, elipseC, elipseD];
     return (
       <>
         <Header />
-        {
-          questions.length > 0
-            ? (
-              <div>
-                <h1 data-testid="question-category">
-                  {typeof indice === 'number'
-                    ? questions[indice].category : null}
+        <img
+          className={ style.logoTrivia }
+          src={ logoTrivia }
+          alt="Logo Trivia"
+        />
+        <main className={ style.main }>
+          {
+            questions.length > 0
+              ? (
+                <>
+                  <div className={ style.divPergunta }>
+                    <h1 className={ style.h1Category } data-testid="question-category">
+                      {typeof indice === 'number'
+                        ? questions[indice].category : null}
+                    </h1>
+                    <h1 className={ style.h1Question } data-testid="question-text">
+                      {typeof indice === 'number'
+                        ? questions[indice].question : null}
+                    </h1>
+                    <h1 className={ style.h1Timer }>
+                      <img
+                        className={ style.iconTimer }
+                        src={ iconTimer }
+                        alt="Icone do Timer"
+                      />
+                      {' '}
+                      Tempo:
+                      {' '}
+                      {timer}
+                      s
+                    </h1>
+                  </div>
+                  <div className={ style.divRespostas } data-testid="answer-options">
+                    { lista.map((elemento, index) => (
+                      // <OptionButton
+                      //   key={ index }
+                      //   isDisabled={ isDisabled }
+                      //   element={ elemento }
+                      //   click={ this.funcClickResponse }
+                      //   changeStyle={ changeButtonBorder }
+                      // />
 
-                </h1>
-                <h1 data-testid="question-text">
-                  {typeof indice === 'number'
-                    ? questions[indice].question : null}
-
-                </h1>
-                <h1>{timer}</h1>
-                <div data-testid="answer-options">
-                  { lista.map((elemento, index) => (
-                    <OptionButton
-                      key={ index }
-                      isDisabled={ isDisabled }
-                      element={ elemento }
-                      click={ this.funcClickResponse }
-                      changeStyle={ changeButtonBorder }
-                    />
-                  )) }
-                </div>
-                {
-                  next
-                    ? (
                       <button
+                        key={ index }
                         type="button"
-                        onClick={ this.funcNext }
-                        data-testid="btn-next"
+                        onClick={ () => this.funcClickResponse(elemento[1]) }
+                        data-testid={ elemento[1] }
+                        disabled={ isDisabled }
+                        className={ `${this.applyStyle(changeButtonBorder, elemento)} 
+                          ${style.buttonResposta}` }
                       >
-                        Next
-
+                        <img
+                          className={ style.elipseImage }
+                          src={ ELIPSES[index] }
+                          alt=""
+                        />
+                        {' '}
+                        { elemento[0] }
                       </button>
-                    ) : null
-                }
-              </div>
-            )
-            : null
-        }
+                    ))}
+                  </div>
+                </>)
+              : null
+          }
+        </main>
+        <div className={ style.divFooter }>
+          <button
+            type="button"
+            className={ style.buttonNext }
+            onClick={ this.funcNext }
+            data-testid={ next ? 'btn-next' : null }
+          >
+            PRÓXIMA
+          </button>
+        </div>
+        <Footer />
       </>
     );
   }

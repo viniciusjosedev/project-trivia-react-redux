@@ -1,0 +1,61 @@
+.header {
+  align-items: center;
+  background-color: white;
+  display: flex;
+
+  /* flex-basis: 1; */
+  flex-grow: 1;
+  height: 113px;
+  justify-content: flex-end;
+  position: absolute;
+  width: 100%;
+}
+
+.divPlayer {
+  align-items: center;
+
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+  margin-right: 50px;
+}
+
+.imgProfile {
+  border-radius: 18.13px;
+  height: 37px;
+  margin-right: 13px;
+  width: 37px;
+}
+
+.headerName {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+
+.divScore {
+  align-items: center;
+
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+}
+
+.imgStarScore {
+  height: 28.59px;
+  margin-right: 12.54px;
+  width: 29.88px;
+}
+
+.score {
+  color: black;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin-right: 100px;
+}
+
