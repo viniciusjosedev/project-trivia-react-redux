@@ -5,9 +5,9 @@ const getToken = async (history) => {
   history.push('/game');
 };
 
-export const getQuestions = async (token) => {
+export const getQuestions = async (token, config) => {
   const getStorage = JSON.parse(localStorage.getItem('settings'));
-  if (getStorage !== null) {
+  if (getStorage !== null && config) {
     const category = getStorage.category > 0 ? `category=${getStorage.category}` : null;
     const difficulty = getStorage.difficulty
     !== 'any' ? `difficulty=${getStorage.difficulty}` : null;
