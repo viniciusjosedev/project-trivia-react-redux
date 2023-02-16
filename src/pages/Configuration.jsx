@@ -43,7 +43,7 @@ function Configuration({ history }) {
 
   const funcClick = () => {
     localStorage.setItem('settings', JSON.stringify(state));
-    getToken(history, true);
+    getToken(history);
   };
 
   return (

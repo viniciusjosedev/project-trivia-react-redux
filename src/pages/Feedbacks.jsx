@@ -55,16 +55,18 @@ class Feedbacks extends Component {
     return (
       <>
         <Header />
-
-        <img src={ logoTrivia } alt="logo trivia" className={ styles.logoTrivia } />
-
-        <main className={ styles.feedback__container }>
+        <main className={ styles.main }>
+          <img
+            src={ logoTrivia }
+            alt="logo trivia"
+            className={ styles.logoTrivia }
+          />
           <img
             src={ gravatar }
             alt="avatar"
             className={ `${styles.gravatar} ${borderColor}` }
           />
-          <div className={ styles.feedback__info }>
+          <div className={ styles.divBranca }>
             <h1
               data-testid="feedback-text"
               className={ `${fontColor} ${styles.feedbackTitle}` }
@@ -86,25 +88,24 @@ class Feedbacks extends Component {
               pontos
             </h3>
           </div>
+          <div className={ styles.divFooter }>
+            <button
+              onClick={ this.funcButton }
+              data-testid="btn-ranking"
+              className={ `${styles.rankingButton} ${styles.AllButton}` }
+            >
+              Ver ranking
+            </button>
+            <button
+              type="button"
+              data-testid="btn-play-again"
+              onClick={ this.redirectToInitialPage }
+              className={ `${styles.playAgainButton} ${styles.AllButton}` }
+            >
+              Jogar novamente
+            </button>
+          </div>
         </main>
-
-        <div className={ styles.buttonsContainer }>
-          <button
-            onClick={ this.funcButton }
-            data-testid="btn-ranking"
-            className={ styles.rankingButton }
-          >
-            Ver ranking
-          </button>
-          <button
-            type="button"
-            data-testid="btn-play-again"
-            onClick={ this.redirectToInitialPage }
-            className={ styles.playAgainButton }
-          >
-            Jogar novamente
-          </button>
-        </div>
         <Footer />
       </>
     );
