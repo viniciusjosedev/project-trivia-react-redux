@@ -65,7 +65,7 @@ class Login extends Component {
           <div className={ style.divBranca }>
             <input
               type="text"
-              placeholder="Qual é o seu e-mail do gravatar?"
+              placeholder="Qual é o seu nome?"
               className={ style.inputName }
               name="userName"
               value={ userName }
@@ -73,8 +73,8 @@ class Login extends Component {
               data-testid="input-player-name"
             />
             <input
-              type="text"
-              placeholder="Qual é o seu nome?"
+              type="email"
+              placeholder="Qual é o seu e-mail do gravatar?"
               className={ style.inputEmail }
               name="email"
               value={ email }
