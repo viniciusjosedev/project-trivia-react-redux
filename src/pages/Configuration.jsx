@@ -1,15 +1,122 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import style from '../styles/Configuration.module.css';
+import logoTrivia from '../styles/images/logoTrivia.svg';
+import Footer from '../components/Footer';
+import getToken from '../api/getToken';
 // import Ranking from './Ranking';
 
-class Configuration extends Component {
-  render() {
-    return (
-      <>
-        {/* <Ranking /> */}
-        <h1 data-testid="settings-title">Configurações</h1>
-      </>
-    );
-  }
+function Configuration({ history }) {
+  const [state, setState] = useState({
+    category: 0,
+    difficulty: 'any',
+    type: 'any',
+  });
+
+  const CATEGORY = {
+    'Any Category': 0,
+    'General Knowledge': 9,
+    'Entertainment: Books': 10,
+    'Entertainment: Film': 11,
+    'Entertainment: Music': 12,
+    'Entertainment: Musicals & Theatres': 13,
+    'Entertainment: Television': 14,
+    'Entertainment: Video Games': 15,
+    'Entertainment: Board Games': 16,
+    'Science & Nature': 17,
+    'Science: Computers': 18,
+    'Science: Mathematics': 19,
+    Mythology: 20,
+    Sports: 21,
+    Geography: 22,
+    History: 23,
+    Politics: 24,
+    Art: 25,
+    Celebrities: 26,
+    Animals: 27,
+    Vehicles: 28,
+    'Entertainment: Comics': 29,
+    'Science: Gadgets': 30,
+    'Entertainment: Japanese Anime & Manga': 31,
+    'Entertainment: Cartoon & Animations': 32,
+  };
+
+  const funcClick = () => {
+    localStorage.setItem('settings', JSON.stringify(state));
+    getToken(history, true);
+  };
+
+  return (
+    <>
+      <main className={ style.main }>
+        <img src={ logoTrivia } alt="Logo Trivia" className={ style.logoTrivia } />
+        <div className={ style.divBranca }>
+          <h1
+            className={ style.h1Settings }
+            data-testid="settings-title"
+          >
+            Configurações
+
+          </h1>
+          <select
+            name=""
+            className={ style.selectAll }
+            style={ { color: state.category > 0 ? 'black' : null } }
+            placeholder="categoria"
+            id=""
+            value={ state.category }
+            onChange={ ({ target: { value } }) => setState(
+              { ...state, category: value },
+            ) }
+          >
+            {Object.keys(CATEGORY).map((e) => (
+              <option key={ e } value={ CATEGORY[e] } alt={ e }>{e}</option>
+            ))}
+          </select>
+          <select
+            name=""
+            className={ style.selectAll }
+            id=""
+            style={ { color: state.difficulty !== 'any' ? 'black' : null } }
+            value={ state.difficulty }
+            onChange={ ({ target: { value } }) => setState(
+              { ...state, difficulty: value },
+            ) }
+          >
+            <option value="any">Any Difficulty</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <select
+            name=""
+            id=""
+            style={ { color: state.type !== 'any' ? 'black' : null } }
+            value={ state.type }
+            className={ style.selectAll }
+            onChange={ ({ target: { value } }) => setState({ ...state, type: value }) }
+          >
+            <option value="any">Any Type</option>
+            <option value="multiple">Multiple Choice</option>
+            <option value="boolean">True / False</option>
+          </select>
+          <button
+            onClick={ funcClick }
+            className={ style.button }
+            type="button"
+          >
+            JOGAR
+
+          </button>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
 }
 
 export default Configuration;
+
+Configuration.propTypes = {
+  history: PropTypes.objectOf(PropTypes.objectOf),
+}.isRequired;

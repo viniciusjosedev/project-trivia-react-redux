@@ -1,0 +1,107 @@
+body {
+  background: white;
+
+}
+
+.main {
+  align-items: center;
+  background: url('./images/backgroundSettings.svg');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 4;
+
+  /* height: 720px; */
+  justify-content: center;
+  width: 100%;
+
+  /* box-sizing: border-box; */
+}
+
+.logoTrivia {
+  height: 178.76px;
+  margin-bottom: -240px;
+
+  /* position: absolute; */
+  margin-top: 60px;
+  width: 177.79px;
+  z-index: 1;
+}
+
+.divBranca {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 488px;
+  justify-content: center;
+  margin-bottom: 80px;
+  margin-top: 148px;
+  width: 489px;
+  z-index: 0;
+}
+
+.h1Settings {
+  color: #3c1b7a;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin-top: 37.75px;
+  text-transform: uppercase;
+}
+
+.selectAll {
+  align-items: center;
+  border: 1px solid black;
+  color: #6b7588;
+  display: flex;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  height: 45px;
+  justify-content: center;
+  line-height: 150%;
+  margin-bottom: 16px;
+  margin-left: -1px;
+  margin-top: 16px;
+  padding-left: 10px;
+  width: 387px;
+}
+
+.selectAll:focus {
+  border: 1px solid black;
+}
+
+.button {
+  align-items: center;
+  background: #2fc18c;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  height: 45px;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  text-align: center;
+  transition-delay: 0.1s;
+  transition-duration: 1s;
+  width: 386px;
+}
+
+.button:hover {
+  height: 47.25px;
+  transition-delay: 0.1s;
+  transition-duration: 1s;
+  width: 405.3px;
+}

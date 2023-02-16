@@ -3,9 +3,13 @@ body {
   background: url('./images/backgroundGame.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  box-sizing: border-box;
+  box-sizing: content-box;
   display: flex;
   font-family: Epilogue , system-ui , -apple-system , Ubuntu , sans-serif;
+
+  /* height: 100%; */
+
+  /* width: 100%; */
 }
 
 .feedback__container {

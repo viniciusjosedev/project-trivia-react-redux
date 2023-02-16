@@ -5,7 +5,17 @@ const getToken = async (history) => {
   history.push('/game');
 };
 
-export const getQuestions = async (token) => {
+export const getQuestions = async (token, config) => {
+  const getStorage = JSON.parse(localStorage.getItem('settings'));
+  if (getStorage !== null && config) {
+    const category = getStorage.category > 0 ? `category=${getStorage.category}` : null;
+    const difficulty = getStorage.difficulty
+    !== 'any' ? `difficulty=${getStorage.difficulty}` : null;
+    const type = getStorage.type
+    !== 'any' ? `type=${getStorage.type}` : null;
+    const requisicao = await (await fetch(`https://opentdb.com/api.php?amount=5&token=${token}&${category}&${difficulty}&${type}`)).json();
+    return requisicao;
+  }
   const requisicao = await (await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`)).json();
   return requisicao;
 };
