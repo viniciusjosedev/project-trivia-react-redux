@@ -55,8 +55,7 @@ class Game extends Component {
     }
   };
 
-  funcTimer = (reset) => {
-    const { intervalos } = this.state;
+  funcTimer = () => {
     const NUMBER_INTERVAL = 1000;
     const NUMBER_TIMEOUT = 30000;
     const interval = setInterval(() => {
@@ -71,14 +70,12 @@ class Game extends Component {
       });
     }, NUMBER_TIMEOUT);
     this.setState({ intervalos: [interval, timeout] });
-    if (reset) {
-      clearInterval(intervalos[0]);
-      clearTimeout(intervalos[0]);
-    }
   };
 
   funcClickResponse = (response) => {
-    const { timer, questions, gabarito } = this.state;
+    const { timer, questions, gabarito, intervalos } = this.state;
+    clearInterval(intervalos[0]);
+    clearTimeout(intervalos[0]);
     let { assertions } = this.props;
     const VALUE_SOME_DEFAULT = 10;
     const { dispatch } = this.props;
