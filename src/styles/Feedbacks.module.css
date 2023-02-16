@@ -6,7 +6,9 @@ body {
   box-sizing: content-box;
   display: flex;
   font-family: Epilogue , system-ui , -apple-system , Ubuntu , sans-serif;
+
   /* height: 100%; */
+
   /* width: 100%; */
 }
 
