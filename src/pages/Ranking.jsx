@@ -66,7 +66,6 @@ class Ranking extends Component {
                     data-testid={ `player-score-${indice[index]}` }
                   >
                     {elemento.score}
-
                   </h1>
                   <p className={ style.pontos }>pontos</p>
                 </div>

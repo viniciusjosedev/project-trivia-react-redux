@@ -16,6 +16,10 @@ class Login extends Component {
     btnDisabled: true,
   };
 
+  componentDidMount() {
+    localStorage.removeItem('settings');
+  }
+
   handleChange = ({ target: { name, value } }) => {
     this.setState(
       {
@@ -52,7 +56,21 @@ class Login extends Component {
   };
 
   redirectPage = () => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    const { email, userName } = this.state;
+    if (JSON.parse(localStorage.getItem('ranking')) !== null) {
+      localStorage.setItem(
+        'ranking',
+        JSON.stringify([...JSON.parse(localStorage.getItem('ranking')),
+          { name: userName, score: 0, picture: gravatarImg(email) }]),
+      );
+    } else {
+      localStorage.setItem(
+        'ranking',
+        JSON.stringify([{ name: userName, score: 0, picture: gravatarImg(email) }]),
+      );
+    }
+    dispatch(submitLogin({ gravatarEmail: email, name: userName }));
     history.push('/configuracao');
   };
 
