@@ -16,17 +16,23 @@ import Footer from '../components/Footer';
 import iconV from '../styles/images/iconV.svg';
 import iconX from '../styles/images/iconX.svg';
 
-const CORRECT_ANSWER = 'correct-answer';
+const NUMBER_THREE = 3;
+
+const CORRECT_ANSWER = [NUMBER_THREE, 'correct-answer'];
 
 class Game extends Component {
   state = {
     questions: [],
     timer: 30,
     lista: [],
-    isDisabled: true,
+    isDisabled: false,
     changeButtonBorder: false,
     next: false,
     indice: 0,
+    intervalos: [],
+    gabarito: { hard: [CORRECT_ANSWER[0], '#EA5D5D'],
+      medium: [2, '#F9BA18'],
+      easy: [1, '#2FC18C'] },
   };
 
   componentDidMount() {
@@ -50,12 +56,12 @@ class Game extends Component {
   };
 
   funcTimer = (reset) => {
+    const { intervalos } = this.state;
     const NUMBER_INTERVAL = 1000;
     const NUMBER_TIMEOUT = 30000;
     const interval = setInterval(() => {
       this.setState((atual) => ({
         timer: atual.timer - 1,
-        isDisabled: false,
       }));
     }, NUMBER_INTERVAL);
     const timeout = setTimeout(() => {
@@ -64,25 +70,25 @@ class Game extends Component {
         isDisabled: true,
       });
     }, NUMBER_TIMEOUT);
+    this.setState({ intervalos: [interval, timeout] });
     if (reset) {
-      clearTimeout(interval);
-      clearTimeout(timeout);
+      clearInterval(intervalos[0]);
+      clearTimeout(intervalos[0]);
     }
   };
 
   funcClickResponse = (response) => {
-    const { timer, questions } = this.state;
+    const { timer, questions, gabarito } = this.state;
     let { assertions } = this.props;
     const VALUE_SOME_DEFAULT = 10;
-    const GABARITO = { hard: 3, medium: 2, easy: 1 };
     const { dispatch } = this.props;
-    if (response === CORRECT_ANSWER) {
-      const score = VALUE_SOME_DEFAULT + (timer * GABARITO[questions[0].difficulty]);
+    this.setState({ isDisabled: true });
+    if (response === CORRECT_ANSWER[1]) {
+      const score = VALUE_SOME_DEFAULT + (timer * gabarito[questions[0].difficulty][0]);
       assertions += 1;
       const infoScore = ({ score, assertions });
       dispatch(attScore(infoScore));
     }
-
     this.setState({
       changeButtonBorder: true,
       next: true,
@@ -91,6 +97,7 @@ class Game extends Component {
 
   funcNext = () => {
     const { indice, questions } = this.state;
+    this.setState({ isDisabled: false });
     const { history } = this.props;
     this.setState({
       indice: indice < questions.length - 1 ? indice + 1 : '/feedbacks',
@@ -116,10 +123,9 @@ class Game extends Component {
   };
 
   applyStyle = (changeStyle, element) => {
-    if (changeStyle && element[1] === CORRECT_ANSWER) {
+    if (changeStyle && element[1] === CORRECT_ANSWER[1]) {
       return style.greenBorder;
     }
-
     if (changeStyle) {
       return style.redBorder;
     }
@@ -134,6 +140,7 @@ class Game extends Component {
       next,
       indice,
       changeButtonBorder,
+      gabarito,
     } = this.state;
     const ELIPSES = [elipseA, elipseB, elipseC, elipseD];
     const DONES_FAILLS = [iconV, iconX];
@@ -151,13 +158,17 @@ class Game extends Component {
               ? (
                 <>
                   <div className={ style.divPergunta }>
-                    <h1 className={ style.h1Category } data-testid="question-category">
-                      {typeof indice === 'number'
-                        ? questions[indice].category : null}
+                    <h1
+                      className={ style.h1Category }
+                      style={ { backgroundColor:
+                        gabarito[questions[indice <= questions.length ? indice
+                          : questions.length - 1].difficulty][1] } }
+                      data-testid="question-category"
+                    >
+                      {typeof indice === 'number' ? questions[indice].category : null}
                     </h1>
                     <h1 className={ style.h1Question } data-testid="question-text">
-                      {typeof indice === 'number'
-                        ? questions[indice].question : null}
+                      {typeof indice === 'number' ? questions[indice].question : null}
                     </h1>
                     <h1 className={ style.h1Timer }>
                       <img
@@ -165,6 +176,7 @@ class Game extends Component {
                         src={ iconTimer }
                         alt="Icone do Timer"
                       />
+                      {' '}
                       {' '}
                       Tempo:
                       {' '}
@@ -186,7 +198,7 @@ class Game extends Component {
                         {changeButtonBorder ? (
                           <img
                             className={ style.elipseImage }
-                            src={ elemento[1] === CORRECT_ANSWER
+                            src={ elemento[1] === CORRECT_ANSWER[1]
                               ? DONES_FAILLS[0] : DONES_FAILLS[1] }
                             alt=""
                           />
@@ -235,8 +247,3 @@ Game.propTypes = {
   push: PropTypes.func,
   score: PropTypes.number,
 }.isRequired;
-
-Game.defaultProps = {
-  history: {},
-  push: () => {},
-};
