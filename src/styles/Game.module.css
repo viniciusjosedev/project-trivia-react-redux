@@ -154,12 +154,10 @@
 }
 
 .buttonResposta:hover {
-  border: 3px solid green;
+  border: 3px solid rgb(6, 240, 15);
   height: 66.1px;
-  transition-delay: 0.2s;
+  transition-delay: 0s;
   transition-duration: 1s;
-
-  /* width: 536px; */
 }
 
 .elipseImage {
@@ -172,12 +170,16 @@
   width: 46px;
 }
 
-.redBorder {
+.redBorder, .redBorder:hover {
   border: 3px solid red;
+  transition-delay: 0.2s;
+  transition-duration: 1s;
 }
 
-.greenBorder {
+.greenBorder, .greenBorder:hover {
   border: 3px solid rgb(6, 240, 15);
+  transition-delay: 0.2s;
+  transition-duration: 1s;
 }
 
 .divFooter {
