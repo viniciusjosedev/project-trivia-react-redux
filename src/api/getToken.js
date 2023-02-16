@@ -6,7 +6,13 @@ const getToken = async (history) => {
 };
 
 export const getQuestions = async (token) => {
-  const requisicao = await (await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`)).json();
+  const getStorage = JSON.parse(localStorage.getItem('settings'));
+  const category = getStorage.category > 0 ? `category=${getStorage.category}` : '';
+  const difficulty = getStorage.difficulty
+    !== 'any' ? `difficulty=${getStorage.difficulty}` : '';
+  const type = getStorage.type
+    !== 'any' ? `type=${getStorage.type}` : '';
+  const requisicao = await (await fetch(`https://opentdb.com/api.php?amount=5&token=${token}&${category}&${difficulty}&${type}`)).json();
   return requisicao;
 };
 
