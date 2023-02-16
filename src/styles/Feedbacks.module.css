@@ -26,9 +26,10 @@ body {
 .gravatar {
   border-radius: 100%;
   box-sizing: border-box;
+  height: 213px;
   position: absolute;
   top: 340px;
-  width: 160px;
+  width: 213px;
 }
 
 .redBorder {
@@ -128,7 +129,7 @@ body {
   width: 260px;
 }
 
-button:hover {
+.playAgainButton:hover, .rankingButton:hover {
   border: 2px solid #b5b5b5;
   cursor: pointer;
   zoom: 1.02;

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
+import style from '../styles/Ranking.module.css';
+import logoTrivia from '../styles/images/logoTrivia.svg';
+import starScore from '../styles/images/starScore.svg';
+import Footer from '../components/Footer';
 
 class Ranking extends Component {
   constructor(args) {
@@ -38,25 +42,47 @@ class Ranking extends Component {
 
     return (
       <>
-        <h1 data-testid="ranking-title">Ranking</h1>
-        {ranking.length > 0 ? ranking.map((elemento, index) => (
-          <div key={ indice[index] }>
-            <img
-              src={ elemento.picture }
-              alt={ elemento.name }
-            />
-            <h1 data-testid={ `player-name-${indice[index]}` }>{elemento.name}</h1>
-            <h1 data-testid={ `player-score-${indice[index]}` }>{elemento.score}</h1>
+        <main className={ style.main }>
+          <img className={ style.logoTrivia } src={ logoTrivia } alt="" />
+          <div className={ style.divBranca }>
+            <h1 className={ style.h1Ranking } data-testid="ranking-title">Ranking</h1>
+            {ranking.length > 0 ? ranking.map((elemento, index) => (
+              <div className={ style.divLista } key={ indice[index] }>
+                <img
+                  src={ elemento.picture }
+                  alt={ elemento.name }
+                  className={ style.imgRanking }
+                />
+                <h1
+                  className={ style.h1Name }
+                  data-testid={ `player-name-${indice[index]}` }
+                >
+                  {elemento.name}
+                </h1>
+                <div className={ style.divScore }>
+                  <img className={ style.starScore } src={ starScore } alt="" />
+                  <h1
+                    className={ style.score }
+                    data-testid={ `player-score-${indice[index]}` }
+                  >
+                    {elemento.score}
+
+                  </h1>
+                  <p className={ style.pontos }>pontos</p>
+                </div>
+              </div>
+            )) : null}
+            <button
+              type="button"
+              className={ style.buttonPlayAgain }
+              data-testid="btn-go-home"
+              onClick={ () => this.chamaLogin() }
+            >
+              voltar para Login
+            </button>
           </div>
-        )) : null}
-        <div className="ranking-container" />
-        <button
-          type="button"
-          data-testid="btn-go-home"
-          onClick={ () => this.chamaLogin() }
-        >
-          voltar para Login
-        </button>
+        </main>
+        <Footer />
       </>
     );
   }
