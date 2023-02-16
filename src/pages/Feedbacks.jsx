@@ -19,6 +19,7 @@ class Feedbacks extends Component {
 
   componentDidMount() {
     const { gravatarEmail, assertions } = this.props;
+    console.log(gravatarEmail);
     this.setState({ gravatar: gravatarImg(gravatarEmail) });
 
     if (assertions < MIN_ASSERTIONS) {
@@ -112,6 +113,7 @@ class Feedbacks extends Component {
 
 const mapStateToProps = (state) => ({
   score: state.player.score,
+  gravatarEmail: state.player.gravatarEmail,
   assertions: state.player.assertions,
 });
 

@@ -1,0 +1,145 @@
+.main {
+  align-items: center;
+  background: url('./images/backgroundSettings.svg');
+
+  /* background-color: red; */
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 4;
+
+  /* height: 720px; */
+  justify-content: flex-start;
+  margin-bottom: -0.9px;
+  width: 100%;
+
+  /* box-sizing: border-box; */
+}
+
+.logoTrivia {
+  height: 200.25px;
+
+  /* margin-bottom: -240px; */
+  margin-top: 57px;
+
+  /* position: absolute; */
+
+  /* margin-top: 60px; */
+  width: 177.79px;
+  z-index: 1;
+}
+
+.divBranca {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 488px;
+  justify-content: center;
+  margin-bottom: 80px;
+  margin-top: -105px;
+  width: 489px;
+  z-index: 0;
+}
+
+.h1Ranking {
+  color: #3c1b7a;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin-bottom: 19px;
+  margin-top: 37.75px;
+  text-transform: uppercase;
+}
+
+.divLista {
+  align-items: center;
+  background: #ebebeb;
+
+  /* background-color: red; */
+  border-radius: 100px;
+  display: flex;
+  height: 55px;
+  justify-content: space-between;
+
+  /* flex-direction: flex-start; */
+  margin-bottom: 13px;
+  width: 386px;
+}
+
+.imgRanking {
+
+  /* background: url(Captura de Tela 2022-07-14 às 14.39.04); */
+  border-radius: 18.13px;
+  height: 37px;
+  margin-left: 10px;
+  margin-right: 13px;
+  width: 37px;
+}
+
+.h1Name {
+  align-items: center;
+  color: black;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  margin-left: -90px;
+}
+
+.divScore {
+  align-items: center;
+  background: white;
+  border-radius: 100px;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.25);
+  display: flex;
+  height: 55px;
+  justify-content: flex-start;
+  width: 184px;
+}
+
+.starScore {
+  height: 28.59px;
+  margin-left: 11px;
+  margin-right: 12.54px;
+  width: 29.88px;
+}
+
+.score {
+  align-items: center;
+  color: black;
+  display: flex;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin-right: 3px;
+}
+
+.pontos {
+  align-items: center;
+  color: black;
+  display: flex;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+}
+
+.buttonPlayAgain {
+  background: #2fc18c;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  height: 45px;
+  margin-top: 10px;
+  width: 386px;
+}
