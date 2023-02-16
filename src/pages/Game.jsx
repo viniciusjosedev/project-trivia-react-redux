@@ -75,7 +75,7 @@ class Game extends Component {
   funcClickResponse = (response) => {
     const { timer, questions, gabarito, intervalos } = this.state;
     clearInterval(intervalos[0]);
-    clearTimeout(intervalos[0]);
+    clearTimeout(intervalos[1]);
     let { assertions } = this.props;
     const VALUE_SOME_DEFAULT = 10;
     const { dispatch } = this.props;
