@@ -134,7 +134,7 @@
 .buttonResposta {
   align-items: center;
   background: white;
-  border: 1px solid white;
+  border: 3px solid white;
   border-radius: 100px;
   box-sizing: border-box;
   color: black;
@@ -149,13 +149,17 @@
   line-height: 150%;
   margin-bottom: 20px;
   transition-delay: 0.2s;
-  transition-duration: 200ms;
+  transition-duration: 1s;
   width: 519px;
 }
 
 .buttonResposta:hover {
+  border: 3px solid green;
   height: 66.1px;
-  width: 536px;
+  transition-delay: 0.2s;
+  transition-duration: 1s;
+
+  /* width: 536px; */
 }
 
 .elipseImage {

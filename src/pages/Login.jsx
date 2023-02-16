@@ -65,7 +65,7 @@ class Login extends Component {
           <div className={ style.divBranca }>
             <input
               type="text"
-              placeholder="Qual é o seu e-mail nome?"
+              placeholder="Qual é o seu nome?"
               className={ style.inputName }
               name="userName"
               value={ userName }
