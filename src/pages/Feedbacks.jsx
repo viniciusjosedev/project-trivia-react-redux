@@ -123,10 +123,9 @@ export default connect(mapStateToProps)(Feedbacks);
 Feedbacks.propTypes = {
   assertions: PropTypes.number,
   history: PropTypes.objectOf(PropTypes.objectOf),
-  push: PropTypes.func,
+  push: PropTypes.func.isRequired,
 }.isRequired;
 
 Feedbacks.defaultProps = {
   history: {},
-  push: () => {},
 };

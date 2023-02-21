@@ -3,7 +3,6 @@ import { screen, waitFor } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 import App from '../App';
-import Game from "../pages/Game";
 import { fetchDataMockado } from './mocks/data';
 
 describe('All tests from screen Game', () => {
@@ -127,7 +126,7 @@ describe('All tests from screen Game', () => {
 	
 	it('Testa se quando o /responde_code/ é 0 o usuario é redirecionado para a /', async () => {
 		global.fetch = jest.fn().mockResolvedValue({
-			json: jest.fn().mockResolvedValue(fetchDataMockado),
+			json: jest.fn().mockResolvedValue({...fetchDataMockado, "response_code": 3}),
 		})
 
 		const { history } = renderWithRouterAndRedux(<App />)
