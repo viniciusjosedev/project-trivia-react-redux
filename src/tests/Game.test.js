@@ -72,8 +72,7 @@ describe('All tests from screen Game', () => {
 	}, 30000)
 
 	it('Passa por todos os clicks de next', async () => {
-		renderWithRouterAndRedux(<App />)
-
+		const { history } = renderWithRouterAndRedux(<App />)
 
 		const inputName = screen.getByTestId('input-player-name');
 		const inputEmail = screen.getByTestId('input-gravatar-email');
@@ -105,6 +104,19 @@ describe('All tests from screen Game', () => {
 
 		userEvent.click(responseCorrect);
 		userEvent.click(buttonNext);
+
+		userEvent.click(screen.getByTestId('btn-play-again'))
+
+		userEvent.type(screen.getByTestId('input-player-name'), 'Vinicius');
+		userEvent.type(screen.getByTestId('input-gravatar-email'), 'a@gmail.com')
+		userEvent.click(screen.getByTestId('btn-settings'));
+
+		// await waitFor(() => { expect(screen.getByTestId('btn-play')).toBeInTheDocument() }, { timeout: 5000 });
+
+		// await waitFor(() => {
+		// 	expect(screen.getByTestId('correct-answer')).toBeInTheDocument();
+		// }, { timeout: 5000 })
+
 	}, 30000)
 
 	it('', async () => {
