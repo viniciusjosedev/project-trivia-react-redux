@@ -1,6 +1,6 @@
 import App from '../App';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
-import localStorageMock from './mocks/localStorageMock';
+import localStorageMock from './mocks/localStorageMock.test';
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event';
 import Ranking from '../pages/Ranking';
@@ -64,4 +64,8 @@ describe('Verifica a funcionalidade da página de Ranking', () => {
       expect(playerScore).toBeInTheDocument();
     }
   })
+
+	test('', () => {
+		renderWithRouterAndRedux(<App />, { player }, '/ranking');
+	})
 });

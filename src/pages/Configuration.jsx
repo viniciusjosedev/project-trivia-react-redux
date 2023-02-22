@@ -4,7 +4,6 @@ import style from '../styles/Configuration.module.css';
 import logoTrivia from '../styles/images/logoTrivia.svg';
 import Footer from '../components/Footer';
 import getToken from '../api/getToken';
-// import Ranking from './Ranking';
 
 function Configuration({ history }) {
   const [state, setState] = useState({
@@ -46,6 +45,10 @@ function Configuration({ history }) {
     getToken(history);
   };
 
+  const funcValue = ({ target: { value, name } }) => {
+    setState({ ...state, [name]: value });
+  };
+
   return (
     <>
       <main className={ style.main }>
@@ -56,32 +59,27 @@ function Configuration({ history }) {
             data-testid="settings-title"
           >
             Configurações
-
           </h1>
           <select
-            name=""
+            name="category"
             className={ style.selectAll }
-            style={ { color: state.category > 0 ? 'black' : null } }
+            style={ { color: 'black' && state.category > 0 } }
             placeholder="categoria"
-            id=""
+            data-testid="category"
             value={ state.category }
-            onChange={ ({ target: { value } }) => setState(
-              { ...state, category: value },
-            ) }
+            onChange={ funcValue }
           >
             {Object.keys(CATEGORY).map((e) => (
               <option key={ e } value={ CATEGORY[e] } alt={ e }>{e}</option>
             ))}
           </select>
           <select
-            name=""
+            name="difficulty"
             className={ style.selectAll }
-            id=""
-            style={ { color: state.difficulty !== 'any' ? 'black' : null } }
+            data-testid="difficulty"
+            style={ { color: 'black' && state.difficulty !== 'any' } }
             value={ state.difficulty }
-            onChange={ ({ target: { value } }) => setState(
-              { ...state, difficulty: value },
-            ) }
+            onChange={ funcValue }
           >
             <option value="any">Any Difficulty</option>
             <option value="easy">Easy</option>
@@ -89,12 +87,12 @@ function Configuration({ history }) {
             <option value="hard">Hard</option>
           </select>
           <select
-            name=""
-            id=""
-            style={ { color: state.type !== 'any' ? 'black' : null } }
+            name="type"
+            data-testid="type"
+            style={ { color: 'black' && state.type !== 'any' } }
             value={ state.type }
             className={ style.selectAll }
-            onChange={ ({ target: { value } }) => setState({ ...state, type: value }) }
+            onChange={ funcValue }
           >
             <option value="any">Any Type</option>
             <option value="multiple">Multiple Choice</option>
@@ -106,7 +104,6 @@ function Configuration({ history }) {
             type="button"
           >
             JOGAR
-
           </button>
         </div>
       </main>

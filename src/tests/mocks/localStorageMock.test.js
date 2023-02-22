@@ -19,9 +19,9 @@ export default class localStorageMock {
         },
       ],
       settings: {
-        category: 'History',
-        difficulty: '',
-        type: '',
+        category: 9,
+        difficulty: 'any',
+        type: 'any',
       }
     };
   }
@@ -34,7 +34,7 @@ export default class localStorageMock {
     return JSON.stringify(this.store[key]) || null;
   }
 
-  setItem = (value, key) => {
+  setItem = (key, value) => {
     this.store[key] = JSON.parse(value);
   }
   

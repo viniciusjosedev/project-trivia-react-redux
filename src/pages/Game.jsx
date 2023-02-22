@@ -167,7 +167,7 @@ class Game extends Component {
                     <h1 className={ style.h1Question } data-testid="question-text">
                       {typeof indice === 'number' ? questions[indice].question : null}
                     </h1>
-                    <h1 className={ style.h1Timer }>
+                    <h1 className={ style.h1Timer } data-testid="text-timer">
                       <img
                         className={ style.iconTimer }
                         src={ iconTimer }
