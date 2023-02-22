@@ -20,8 +20,6 @@ class Ranking extends Component {
     const indice = [];
     ranking.forEach((e, i) => { indice.push(e ? i : null); });
 
-    // console.log(savedData);
-    // const ranking = savedData.sort((a, b) => b.score - a.score);
     this.setState({
       ranking,
       indice,
