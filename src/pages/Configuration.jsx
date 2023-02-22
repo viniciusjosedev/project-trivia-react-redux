@@ -45,6 +45,10 @@ function Configuration({ history }) {
     getToken(history);
   };
 
+  const funcValue = ({ target: { value, name } }) => {
+    setState({ ...state, [name]: value });
+  };
+
   return (
     <>
       <main className={ style.main }>
@@ -57,29 +61,25 @@ function Configuration({ history }) {
             Configurações
           </h1>
           <select
-            name=""
+            name="category"
             className={ style.selectAll }
             style={ { color: state.category > 0 ? 'black' : null } }
             placeholder="categoria"
             data-testid="category"
             value={ state.category }
-            onChange={ ({ target: { value } }) => setState(
-              { ...state, category: value },
-            ) }
+            onChange={ funcValue }
           >
             {Object.keys(CATEGORY).map((e) => (
               <option key={ e } value={ CATEGORY[e] } alt={ e }>{e}</option>
             ))}
           </select>
           <select
-            name=""
+            name="difficulty"
             className={ style.selectAll }
             data-testid="difficulty"
             style={ { color: state.difficulty !== 'any' ? 'black' : null } }
             value={ state.difficulty }
-            onChange={ ({ target: { value } }) => setState(
-              { ...state, difficulty: value },
-            ) }
+            onChange={ funcValue }
           >
             <option value="any">Any Difficulty</option>
             <option value="easy">Easy</option>
@@ -87,12 +87,12 @@ function Configuration({ history }) {
             <option value="hard">Hard</option>
           </select>
           <select
-            name=""
+            name="type"
             data-testid="type"
             style={ { color: state.type !== 'any' ? 'black' : null } }
             value={ state.type }
             className={ style.selectAll }
-            onChange={ ({ target: { value } }) => setState({ ...state, type: value }) }
+            onChange={ funcValue }
           >
             <option value="any">Any Type</option>
             <option value="multiple">Multiple Choice</option>

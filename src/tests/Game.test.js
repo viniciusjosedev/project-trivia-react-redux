@@ -72,7 +72,7 @@ describe('All tests from screen Game', () => {
 	}, 30000)
 
 	it('Passa por todos os clicks de next', async () => {
-		const { history } = renderWithRouterAndRedux(<App />)
+		renderWithRouterAndRedux(<App />)
 
 		const inputName = screen.getByTestId('input-player-name');
 		const inputEmail = screen.getByTestId('input-gravatar-email');
@@ -116,10 +116,18 @@ describe('All tests from screen Game', () => {
 		userEvent.click(screen.getByText('History'))
 		expect(screen.getByText('History')).toBeInTheDocument();
 		expect(screen.getByText(/jogar/i)).toBeInTheDocument();
+		userEvent.click(screen.getByTestId('difficulty'));
+		userEvent.click(screen.getByText(/hard/i))
+		userEvent.click(screen.getByText(/Any Difficulty/i))
+		userEvent.click(screen.getByTestId('type'));
+		userEvent.click(screen.getByText(/multiple choice/i))
+		userEvent.click(screen.getByText(/multiple choice/i))
+		userEvent.click(screen.getByText('Any Type'))
+
 		userEvent.click(screen.getByText(/jogar/i));
 	}, 30000)
 
-	it('', async () => {
+	it('Testa se o timer para em 0', async () => {
 		renderWithRouterAndRedux(<App />)
 
 		const inputName = screen.getByTestId('input-player-name');
