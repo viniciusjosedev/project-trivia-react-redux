@@ -11,20 +11,14 @@ class Ranking extends Component {
     this.state = {
       redirect: false,
       ranking: [],
-      indice: [],
     };
   }
 
   componentDidMount() {
     const ranking = JSON.parse(localStorage.getItem('ranking'));
-    const indice = [];
-    ranking.forEach((e, i) => { indice.push(e ? i : null); });
 
-    // console.log(savedData);
-    // const ranking = savedData.sort((a, b) => b.score - a.score);
     this.setState({
       ranking,
-      indice,
     });
   }
 
@@ -35,7 +29,7 @@ class Ranking extends Component {
   };
 
   render() {
-    const { redirect, ranking, indice } = this.state;
+    const { redirect, ranking } = this.state;
     if (redirect) {
       return <Redirect to="/" />;
     }
@@ -47,7 +41,7 @@ class Ranking extends Component {
           <div className={ style.divBranca }>
             <h1 className={ style.h1Ranking } data-testid="ranking-title">Ranking</h1>
             {ranking.length > 0 ? ranking.map((elemento, index) => (
-              <div className={ style.divLista } key={ indice[index] }>
+              <div className={ style.divLista } key={ index }>
                 <img
                   src={ elemento.picture }
                   alt={ elemento.name }
@@ -55,7 +49,7 @@ class Ranking extends Component {
                 />
                 <h1
                   className={ style.h1Name }
-                  data-testid={ `player-name-${indice[index]}` }
+                  data-testid={ `player-name-${index}` }
                 >
                   {elemento.name}
                 </h1>
@@ -63,7 +57,7 @@ class Ranking extends Component {
                   <img className={ style.starScore } src={ starScore } alt="" />
                   <h1
                     className={ style.score }
-                    data-testid={ `player-score-${indice[index]}` }
+                    data-testid={ `player-score-${index}` }
                   >
                     {elemento.score}
                   </h1>
@@ -75,7 +69,7 @@ class Ranking extends Component {
               type="button"
               className={ style.buttonPlayAgain }
               data-testid="btn-go-home"
-              onClick={ () => this.chamaLogin() }
+              onClick={ this.chamaLogin }
             >
               voltar para Login
             </button>

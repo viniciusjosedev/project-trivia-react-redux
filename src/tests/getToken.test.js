@@ -18,8 +18,31 @@ describe('', () => {
 		})
 
 		expect(await getQuestions('b24dd09bedde37fc2cb0de259bf2bcb01b971f84cde682d4d887003758d04369')).toEqual(fetchDataMockado);
+	});
 
+	it('', async () => {
+		mockLocalStorage();
+		localStorage.setItem('settings', JSON.stringify({ category: 9,
+			difficulty: '',
+			type: '',}))
 		
-	})
+			global.fetch = jest.fn().mockResolvedValue({
+				json: jest.fn().mockResolvedValue(fetchDataMockado),
+			})
 	
+			expect(await getQuestions('b24dd09bedde37fc2cb0de259bf2bcb01b971f84cde682d4d887003758d04369')).toEqual(fetchDataMockado);
+	})
+
+	it('', async () => {
+		mockLocalStorage();
+		localStorage.setItem('settings', JSON.stringify({ category: 0,
+			difficulty: '',
+			type: '',}))
+		
+			global.fetch = jest.fn().mockResolvedValue({
+				json: jest.fn().mockResolvedValue(fetchDataMockado),
+			})
+	
+			expect(await getQuestions('b24dd09bedde37fc2cb0de259bf2bcb01b971f84cde682d4d887003758d04369')).toEqual(fetchDataMockado);
+	})
 })

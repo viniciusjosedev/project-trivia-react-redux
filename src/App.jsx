@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Game from './pages/Game';
 import Configuration from './pages/Configuration';
 import Login from './pages/Login';
-import Feedbacks from './pages/Feedbacks';
+import Feedback from './pages/Feedback';
 import Ranking from './pages/Ranking';
 
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
       <Route
         exact
         path="/feedbacks"
-        render={ (props) => <Feedbacks { ...props } /> }
+        render={ (props) => <Feedback { ...props } /> }
       />
       <Route
         exact
