@@ -64,11 +64,13 @@ class Login extends Component {
         JSON.stringify([...JSON.parse(localStorage.getItem('ranking')),
           { name: userName, score: 0, picture: gravatarImg(email) }]),
       );
+      console.log('passou aqui');
     } else {
       localStorage.setItem(
         'ranking',
         JSON.stringify([{ name: userName, score: 0, picture: gravatarImg(email) }]),
       );
+      console.log('passou aqui else');
     }
     dispatch(submitLogin({ gravatarEmail: email, name: userName }));
     history.push('/configuracao');

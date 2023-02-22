@@ -3,7 +3,6 @@ import { screen, waitFor } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 import App from '../App';
-import Game from "../pages/Game";
 import { fetchDataMockado } from './mocks/data';
 
 describe('All tests from screen Game', () => {
@@ -73,8 +72,7 @@ describe('All tests from screen Game', () => {
 	}, 30000)
 
 	it('Passa por todos os clicks de next', async () => {
-		renderWithRouterAndRedux(<App />)
-
+		const { history } = renderWithRouterAndRedux(<App />)
 
 		const inputName = screen.getByTestId('input-player-name');
 		const inputEmail = screen.getByTestId('input-gravatar-email');
@@ -106,6 +104,19 @@ describe('All tests from screen Game', () => {
 
 		userEvent.click(responseCorrect);
 		userEvent.click(buttonNext);
+
+		userEvent.click(screen.getByTestId('btn-play-again'))
+
+		userEvent.type(screen.getByTestId('input-player-name'), 'Vinicius');
+		userEvent.type(screen.getByTestId('input-gravatar-email'), 'a@gmail.com')
+		userEvent.click(screen.getByTestId('btn-settings'));
+
+		userEvent.click(screen.getByTestId('category'))
+		expect(screen.getByTestId('category')).toBeInTheDocument();
+		userEvent.click(screen.getByText('History'))
+		expect(screen.getByText('History')).toBeInTheDocument();
+		expect(screen.getByText(/jogar/i)).toBeInTheDocument();
+		userEvent.click(screen.getByText(/jogar/i));
 	}, 30000)
 
 	it('', async () => {
@@ -127,7 +138,7 @@ describe('All tests from screen Game', () => {
 	
 	it('Testa se quando o /responde_code/ é 0 o usuario é redirecionado para a /', async () => {
 		global.fetch = jest.fn().mockResolvedValue({
-			json: jest.fn().mockResolvedValue(fetchDataMockado),
+			json: jest.fn().mockResolvedValue({...fetchDataMockado, "response_code": 3}),
 		})
 
 		const { history } = renderWithRouterAndRedux(<App />)

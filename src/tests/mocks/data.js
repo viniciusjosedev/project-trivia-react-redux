@@ -1,65 +1,63 @@
 export const fetchDataMockado = {
-	"response_code": 3,
+	"response_code": 0,
 	"results": [
 		{
-			"category": "Sports",
+			"category": "Entertainment: Video Games",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "Which German city does the map &quot;Clubhouse&quot; in &quot;Tom Clancy&#039;s Rainbow Six Siege&quot; take place in?",
+			"correct_answer": "Hannover",
+			"incorrect_answers": [
+				"Berlin",
+				"Hamburg",
+				"Munich"
+			]
+		},
+		{
+			"category": "History",
 			"type": "multiple",
 			"difficulty": "easy",
-			"question": "In golf, what name is given to a hole score of two under par?",
-			"correct_answer": "Eagle",
+			"question": "Who was among those killed in the 2010 Smolensk, Russia plane crash tragedy?",
+			"correct_answer": "The Polish President",
 			"incorrect_answers": [
-				"Birdie",
-				"Bogey",
-				"Albatross"
+				"Pope John Paul II",
+				"Bang-Ding Ow",
+				"Albert Putin"
 			]
 		},
 		{
-			"category": "General Knowledge",
-			"type": "multiple",
-			"difficulty": "medium",
-			"question": "What is the unit of currency in Laos?",
-			"correct_answer": "Kip",
+			"category": "Geography",
+			"type": "boolean",
+			"difficulty": "easy",
+			"question": "Hungary is the only country in the world beginning with H.",
+			"correct_answer": "False",
 			"incorrect_answers": [
-				"Ruble",
-				"Konra",
-				"Dollar"
+				"True"
 			]
 		},
 		{
-			"category": "Entertainment: Japanese Anime & Manga",
-			"type": "multiple",
-			"difficulty": "medium",
-			"question": "In the &quot;Re:Zero&quot; manga series, which of the following Sin Archbishops eats Rem&#039;s existence?",
-			"correct_answer": "Ley Batenkaitos",
-			"incorrect_answers": [
-				"Roy Alphard",
-				"Petelgeuse Romanee-Conti",
-				"Louis Arneb"
-			]
-		},
-		{
-			"category": "Animals",
-			"type": "multiple",
-			"difficulty": "medium",
-			"question": "&quot;Decapods&quot; are an order of ten-footed crustaceans.  Which of these are NOT decapods?",
-			"correct_answer": "Krill",
-			"incorrect_answers": [
-				"Lobsters",
-				"Shrimp",
-				"Crabs"
-			]
-		},
-		{
-			"category": "General Knowledge",
+			"category": "Art",
 			"type": "multiple",
 			"difficulty": "hard",
-			"question": "What is the most commonly used noun in the English language?",
-			"correct_answer": "Time",
+			"question": "The painting &quot;The Starry Night&quot; by Vincent van Gogh was part of which art movement?",
+			"correct_answer": "Post-Impressionism",
 			"incorrect_answers": [
-				"Home",
-				"Water",
-				"Man"
+				"Romanticism",
+				"Neoclassical",
+				"Impressionism"
+			]
+		},
+		{
+			"category": "Entertainment: Music",
+			"type": "multiple",
+			"difficulty": "easy",
+			"question": "Which of these are NOT a Men at Work song?",
+			"correct_answer": "Basket Case",
+			"incorrect_answers": [
+				"Dr. Heckyll and Mr. Jive",
+				"Who Can It Be Now?",
+				"Be Good Johnny"
 			]
 		}
 	]
-}
+};
