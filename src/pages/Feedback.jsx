@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { clearStore } from '../redux/actions';
-import styles from '../styles/Feedbacks.module.css';
+import styles from '../styles/Feedback.module.css';
 import logoTrivia from '../styles/images/logoTrivia.svg';
 import gravatarImg from '../helper/getGravatarImg';
 
