@@ -111,12 +111,12 @@ describe('All tests from screen Game', () => {
 		userEvent.type(screen.getByTestId('input-gravatar-email'), 'a@gmail.com')
 		userEvent.click(screen.getByTestId('btn-settings'));
 
-		// await waitFor(() => { expect(screen.getByTestId('btn-play')).toBeInTheDocument() }, { timeout: 5000 });
-
-		// await waitFor(() => {
-		// 	expect(screen.getByTestId('correct-answer')).toBeInTheDocument();
-		// }, { timeout: 5000 })
-
+		userEvent.click(screen.getByTestId('category'))
+		expect(screen.getByTestId('category')).toBeInTheDocument();
+		userEvent.click(screen.getByText('History'))
+		expect(screen.getByText('History')).toBeInTheDocument();
+		expect(screen.getByText(/jogar/i)).toBeInTheDocument();
+		userEvent.click(screen.getByText(/jogar/i));
 	}, 30000)
 
 	it('', async () => {

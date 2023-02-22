@@ -4,7 +4,6 @@ import style from '../styles/Configuration.module.css';
 import logoTrivia from '../styles/images/logoTrivia.svg';
 import Footer from '../components/Footer';
 import getToken from '../api/getToken';
-// import Ranking from './Ranking';
 
 function Configuration({ history }) {
   const [state, setState] = useState({
@@ -56,14 +55,13 @@ function Configuration({ history }) {
             data-testid="settings-title"
           >
             Configurações
-
           </h1>
           <select
             name=""
             className={ style.selectAll }
             style={ { color: state.category > 0 ? 'black' : null } }
             placeholder="categoria"
-            id=""
+            data-testid="category"
             value={ state.category }
             onChange={ ({ target: { value } }) => setState(
               { ...state, category: value },
@@ -76,7 +74,7 @@ function Configuration({ history }) {
           <select
             name=""
             className={ style.selectAll }
-            id=""
+            data-testid="difficulty"
             style={ { color: state.difficulty !== 'any' ? 'black' : null } }
             value={ state.difficulty }
             onChange={ ({ target: { value } }) => setState(
@@ -90,7 +88,7 @@ function Configuration({ history }) {
           </select>
           <select
             name=""
-            id=""
+            data-testid="type"
             style={ { color: state.type !== 'any' ? 'black' : null } }
             value={ state.type }
             className={ style.selectAll }
@@ -106,7 +104,6 @@ function Configuration({ history }) {
             type="button"
           >
             JOGAR
-
           </button>
         </div>
       </main>

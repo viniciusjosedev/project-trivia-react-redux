@@ -89,4 +89,44 @@ describe('', () => {
 
 		userEvent.click(screen.getByTestId('btn-play-again'));
 	}, 50000);
+
+	it('', async () => {
+		const { history } = renderWithRouterAndRedux(<App />)
+
+
+		const inputName = screen.getByTestId('input-player-name');
+		const inputEmail = screen.getByTestId('input-gravatar-email');
+		const buttonPlay = screen.getByTestId('btn-play');
+
+		userEvent.type(inputName, 'Vinicius');
+		userEvent.type(inputEmail, 'a@gmail.com')
+		userEvent.click(buttonPlay);
+
+		let responseError;
+		let buttonNext;
+		await waitFor(() => {
+			responseError = screen.getByTestId('wrong-answer-0');
+			buttonNext = screen.getByText(/próxima/i)
+		}, { timeout: 5000 })
+
+		expect(responseError).toBeInTheDocument();
+		userEvent.click(responseError);
+		userEvent.click(buttonNext);
+
+		userEvent.click(responseError);
+		userEvent.click(buttonNext);
+		
+		userEvent.click(responseError);
+		userEvent.click(buttonNext);
+
+		userEvent.click(responseError);
+		userEvent.click(buttonNext);
+
+		userEvent.click(responseError);
+		userEvent.click(buttonNext);
+
+		await waitFor(() => {
+			expect(history.location.pathname).toEqual('/feedbacks')
+		}, { timeout: 5000 })
+	})
 })
