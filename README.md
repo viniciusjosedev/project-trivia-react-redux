@@ -15,6 +15,37 @@
 
 </br>
 
+
+## Execução
+
+### Para instalar o projeto na sua máquina, faça antes o clone do repositório
+
+### Para clones com HTTPS:
+
+```bash
+  git clone https://github.com/viniciusjosedev/project-trivia-react-redux.git
+```
+
+### Para clones com SSH:
+
+```bash
+  git clone git@github.com:viniciusjosedev/project-trivia-react-redux.git
+```
+
+### Para clones com GitHub CLI:
+
+```bash
+  gh repo clone viniciusjosedev/project-trivia-react-redux
+```
+
+### Depois de clonado, abra a o terminal na raiz do projeto e rode o seguinte comando:
+
+```bash
+  npm install && npm start
+```
+
+### Pronto! Com isso a aplicação irá rodar na sua máquina localmente.
+
 ## Descrição do projeto
 
 ### Projeto em grupo realizado mediante a necessidade da prática em conceitos inicialmente abordados de forma teórica. Conceitos esses que priorizam uma boa relação interpessoal, fazendo assim a necessidade de organizar métodos que fariam o grupo atingir grande objetivos.
