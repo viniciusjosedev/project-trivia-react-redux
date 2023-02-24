@@ -1,7 +1,7 @@
-<h1 align='center' id='Título-e-Imagem-de-capa'>TrybeWallet</h1>
+<h1 align='center' id='Título-e-Imagem-de-capa'>Trivia</h1>
 
 <p align='center'>
-<img src='https://setimo-projeto.surge.sh/static/media/logoTrybeWallet.df8281234c226101cdad94feb42ea401.svg' width="502" heigth="118"/>
+<img src='https://grupo-10-trivia.surge.sh/static/media/logoTrivia.713a2b06f256fb71e176ebc2854b7ecf.svg' width="502" heigth="118"/>
 </p>
 
 
@@ -11,7 +11,7 @@
 <img src='https://img.shields.io/badge/STATUS-FINALIZADO-Green' width='250px'></img>
 </p>
 
-<h2>Deploy: https://setimo-projeto.surge.sh</h2>
+<h2>Deploy: https://grupo-10-trivia.surge.sh</h2>
 
 </br>
 
