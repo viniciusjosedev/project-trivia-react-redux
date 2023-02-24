@@ -1,7 +1,7 @@
 <h1 align='center' id='Título-e-Imagem-de-capa'>Trivia</h1>
 
 <p align='center'>
-<img src='https://grupo-10-trivia.surge.sh/static/media/logoTrivia.713a2b06f256fb71e176ebc2854b7ecf.svg' width="502" heigth="118"/>
+<img src='https://grupo-10-trivia.surge.sh/static/media/logoTrivia.713a2b06f256fb71e176ebc2854b7ecf.svg' width="230" heigth="259"/>
 </p>
 
 
