@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import style from '../styles/Configuration.module.css';
 import logoTrivia from '../styles/images/logoTrivia.svg';
 import Footer from '../components/Footer';
 import getToken from '../api/getToken';
 
-function Configuration({ history }) {
+function Configuration({ history, dispatch }) {
+  console.log(dispatch);
   const [state, setState] = useState({
     category: 0,
     difficulty: 'any',
@@ -112,7 +114,7 @@ function Configuration({ history }) {
   );
 }
 
-export default Configuration;
+export default connect()(Configuration);
 
 Configuration.propTypes = {
   history: PropTypes.objectOf(PropTypes.objectOf),

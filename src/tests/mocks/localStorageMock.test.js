@@ -41,8 +41,4 @@ export default class localStorageMock {
   removeItem = (key) => {
     delete this.store[key];
   }
-
-  disgrasa = () => {
-    return 'disgrasa';
-  }
 }
