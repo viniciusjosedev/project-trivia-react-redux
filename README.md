@@ -1,4 +1,4 @@
-<h1 align='center' id='Título-e-Imagem-de-capa'>Recipes App</h1>
+<h1 align='center' id='Título-e-Imagem-de-capa'>Trivia</h1>
 
 <p align='center'>
 <img src='./public/favicon.svg' width="230" heigth="259"/>
